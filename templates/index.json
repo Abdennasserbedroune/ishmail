@@ -1,0 +1,66 @@
+{
+  "sections": {
+    "hero": {
+      "type": "hero",
+      "settings": {
+        "heading": "Welcome to Ishmail Apparel",
+        "subheading": "Discover timeless style for every season",
+        "button_text": "Shop Collection",
+        "button_link": "/collections/all",
+        "height": "large",
+        "text_alignment": "center"
+      }
+    },
+    "featured_collection_1": {
+      "type": "featured-collection",
+      "settings": {
+        "title": "New Arrivals",
+        "collection": "",
+        "products_to_show": 4,
+        "columns_desktop": 4,
+        "show_view_all": true
+      }
+    },
+    "image_with_text": {
+      "type": "image-with-text",
+      "settings": {
+        "heading": "Crafted for Comfort",
+        "text": "<p>Every piece is designed with quality materials and attention to detail.</p>",
+        "button_label": "Learn More",
+        "button_link": "/pages/about",
+        "image_position": "right"
+      }
+    },
+    "featured_collection_2": {
+      "type": "featured-collection",
+      "settings": {
+        "title": "Best Sellers",
+        "collection": "",
+        "products_to_show": 4,
+        "columns_desktop": 4,
+        "show_view_all": true
+      }
+    },
+    "collage": {
+      "type": "collage",
+      "settings": {
+        "heading": "Shop by Category"
+      }
+    },
+    "newsletter": {
+      "type": "newsletter",
+      "settings": {
+        "heading": "Stay in the Loop",
+        "subheading": "Subscribe for exclusive offers and new arrivals"
+      }
+    }
+  },
+  "order": [
+    "hero",
+    "featured_collection_1",
+    "image_with_text",
+    "featured_collection_2",
+    "collage",
+    "newsletter"
+  ]
+}

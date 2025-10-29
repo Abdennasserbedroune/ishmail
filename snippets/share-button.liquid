@@ -1,0 +1,17 @@
+<share-button class="share-button">
+  <button type="button" class="share-button__trigger" aria-label="{{ 'general.share.share' | t }}">
+    <svg width="13" height="15" viewBox="0 0 13 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M1.60938 8.625H2.79688V13.125H10.2031V8.625H11.3906V13.125C11.3906 13.6563 10.9219 14.0625 10.4531 14.0625H2.54688C2.01562 14.0625 1.60938 13.6563 1.60938 13.125V8.625Z" fill="currentColor"/>
+      <path d="M6.5 0.9375L3.70312 3.73438L4.51562 4.54688L5.90625 3.15625V10.125H7.09375V3.15625L8.48438 4.54688L9.29688 3.73438L6.5 0.9375Z" fill="currentColor"/>
+    </svg>
+    <span>{{ 'general.share.share' | t }}</span>
+  </button>
+  <details class="share-button__fallback">
+    <summary>{{ 'general.share.share' | t }}</summary>
+    <div class="share-button__links">
+      <a href="https://www.facebook.com/sharer.php?u={{ share_url }}" target="_blank" rel="noopener">Facebook</a>
+      <a href="https://twitter.com/share?url={{ share_url }}&text={{ share_title }}" target="_blank" rel="noopener">Twitter</a>
+      <a href="https://pinterest.com/pin/create/button/?url={{ share_url }}&description={{ share_title }}" target="_blank" rel="noopener">Pinterest</a>
+    </div>
+  </details>
+</share-button>

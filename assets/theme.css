@@ -1,0 +1,348 @@
+/* Theme: Ishmail Apparel
+ * Version: 1.0.0
+ * Description: Modern clothing ecommerce theme
+ */
+
+/* ==========================================================================
+   Base styles
+   ========================================================================== */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: var(--font-size-base, 16px);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-body, sans-serif);
+  font-weight: var(--font-body-weight, 400);
+  color: var(--color-text, #2A2A2A);
+  background-color: var(--color-background, #ffffff);
+  line-height: 1.6;
+}
+
+/* ==========================================================================
+   Typography
+   ========================================================================== */
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 0 0 1rem;
+  font-family: var(--font-heading, sans-serif);
+  font-weight: var(--font-heading-weight, 700);
+  line-height: 1.2;
+}
+
+h1 { font-size: 2.5rem; }
+h2 { font-size: 2rem; }
+h3 { font-size: 1.75rem; }
+h4 { font-size: 1.5rem; }
+h5 { font-size: 1.25rem; }
+h6 { font-size: 1rem; }
+
+p {
+  margin: 0 0 1rem;
+}
+
+a {
+  color: var(--color-primary, #0E7C86);
+  text-decoration: none;
+  transition: color var(--transition-duration, 0.3s);
+}
+
+a:hover {
+  color: var(--color-secondary, #2A2A2A);
+}
+
+a:focus-visible {
+  outline: 2px solid var(--color-primary, #0E7C86);
+  outline-offset: 2px;
+}
+
+/* ==========================================================================
+   Layout
+   ========================================================================== */
+
+.page-width {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.section-padding {
+  padding: 4rem 0;
+}
+
+.content-for-layout {
+  min-height: 50vh;
+}
+
+/* ==========================================================================
+   Buttons
+   ========================================================================== */
+
+.button {
+  display: inline-block;
+  padding: 0.875rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 500;
+  text-align: center;
+  text-decoration: none;
+  border: 1px solid transparent;
+  border-radius: var(--border-radius, 4px);
+  cursor: pointer;
+  transition: all var(--transition-duration, 0.3s);
+  background: transparent;
+  font-family: inherit;
+}
+
+.button--primary {
+  background-color: var(--color-primary, #0E7C86);
+  color: #ffffff;
+  border-color: var(--color-primary, #0E7C86);
+}
+
+.button--primary:hover {
+  background-color: var(--color-secondary, #2A2A2A);
+  border-color: var(--color-secondary, #2A2A2A);
+  color: #ffffff;
+}
+
+.button--secondary {
+  background-color: transparent;
+  color: var(--color-text, #2A2A2A);
+  border-color: var(--color-border, #E8E8E8);
+}
+
+.button--secondary:hover {
+  border-color: var(--color-text, #2A2A2A);
+}
+
+.button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* ==========================================================================
+   Forms
+   ========================================================================== */
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="number"],
+input[type="search"],
+textarea,
+select {
+  width: 100%;
+  padding: 0.75rem;
+  font-size: 1rem;
+  font-family: inherit;
+  border: 1px solid var(--color-border, #E8E8E8);
+  border-radius: var(--border-radius, 4px);
+  background-color: #ffffff;
+  transition: border-color var(--transition-duration, 0.3s);
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  outline: none;
+  border-color: var(--color-primary, #0E7C86);
+}
+
+label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+}
+
+/* ==========================================================================
+   Utility classes
+   ========================================================================== */
+
+.visually-hidden {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  margin: -1px !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+.skip-to-content-link {
+  position: absolute;
+  top: -100px;
+  left: 0;
+  z-index: 9999;
+  padding: 1rem;
+  background: var(--color-primary, #0E7C86);
+  color: #ffffff;
+}
+
+.skip-to-content-link:focus {
+  top: 0;
+}
+
+.rte {
+  line-height: 1.8;
+}
+
+.rte img {
+  max-width: 100%;
+  height: auto;
+}
+
+.rte ul,
+.rte ol {
+  margin-bottom: 1rem;
+  padding-left: 2rem;
+}
+
+/* ==========================================================================
+   Product Grid
+   ========================================================================== */
+
+.product-grid {
+  display: grid;
+  gap: 2rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.product-grid--2-col-desktop {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.product-grid--3-col-desktop {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.product-grid--4-col-desktop {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.product-grid--5-col-desktop {
+  grid-template-columns: repeat(5, 1fr);
+}
+
+@media screen and (max-width: 989px) {
+  .product-grid--2-col-desktop,
+  .product-grid--3-col-desktop,
+  .product-grid--4-col-desktop,
+  .product-grid--5-col-desktop {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.product-grid--1-col-mobile {
+  grid-template-columns: 1fr;
+}
+
+@media screen and (max-width: 749px) {
+  .product-grid--2-col-mobile {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* ==========================================================================
+   Badges
+   ========================================================================== */
+
+.badge {
+  display: inline-block;
+  padding: 0.25rem 0.5rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  border-radius: var(--border-radius, 4px);
+}
+
+.badge--sale {
+  background-color: var(--color-error, #DC3545);
+  color: #ffffff;
+}
+
+.badge--sold-out {
+  background-color: var(--color-text, #2A2A2A);
+  color: #ffffff;
+}
+
+/* ==========================================================================
+   Price
+   ========================================================================== */
+
+.price {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.price-item {
+  font-weight: 600;
+}
+
+.price-item--regular {
+  font-size: 1.125rem;
+}
+
+.price-item--sale {
+  color: var(--color-error, #DC3545);
+}
+
+.price__badge-sale {
+  margin-left: 0.5rem;
+}
+
+/* ==========================================================================
+   Placeholder SVG
+   ========================================================================== */
+
+.placeholder-svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  background-color: #f5f5f5;
+}
+
+/* ==========================================================================
+   Responsive
+   ========================================================================== */
+
+@media screen and (max-width: 749px) {
+  h1 { font-size: 2rem; }
+  h2 { font-size: 1.5rem; }
+  h3 { font-size: 1.25rem; }
+  
+  .section-padding {
+    padding: 2rem 0;
+  }
+}
+
+/* ==========================================================================
+   Focus states
+   ========================================================================== */
+
+.focus-none:focus {
+  outline: none;
+}
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 2px solid var(--color-primary, #0E7C86);
+  outline-offset: 2px;
+}

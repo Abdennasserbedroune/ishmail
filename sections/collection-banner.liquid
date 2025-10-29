@@ -1,0 +1,41 @@
+<div class="collection-banner">
+  <div class="page-width">
+    {% if section.settings.show_collection_image and collection.image %}
+      <div class="collection-banner__image">
+        <img
+          src="{{ collection.image | image_url: width: 1200 }}"
+          alt="{{ collection.image.alt | escape }}"
+          loading="eager"
+          width="{{ collection.image.width }}"
+          height="{{ collection.image.height }}"
+        >
+      </div>
+    {% endif %}
+
+    {% if section.settings.show_collection_description and collection.description != blank %}
+      <div class="collection-banner__description rte">
+        {{ collection.description }}
+      </div>
+    {% endif %}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Collection banner",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_collection_description",
+      "default": true,
+      "label": "Show collection description"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_collection_image",
+      "default": true,
+      "label": "Show collection image"
+    }
+  ]
+}
+{% endschema %}

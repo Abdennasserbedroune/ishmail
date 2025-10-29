@@ -1,0 +1,40 @@
+{
+  "name": "ishmail-apparel-theme",
+  "version": "1.0.0",
+  "description": "Modern Shopify Online Store 2.0 theme for clothing ecommerce",
+  "author": "Ishmail",
+  "license": "UNLICENSED",
+  "private": true,
+  "scripts": {
+    "dev": "shopify theme dev",
+    "push": "shopify theme push",
+    "pull": "shopify theme pull",
+    "check": "shopify theme check",
+    "lint": "npm run lint:liquid && npm run lint:js && npm run lint:css",
+    "lint:liquid": "shopify theme check",
+    "lint:js": "eslint assets/**/*.js",
+    "lint:css": "stylelint assets/**/*.css",
+    "format": "prettier --write '**/*.{js,json,md,liquid}'",
+    "package": "shopify theme package"
+  },
+  "devDependencies": {
+    "@shopify/theme-check": "^1.14.0",
+    "eslint": "^8.50.0",
+    "eslint-config-prettier": "^9.0.0",
+    "prettier": "^3.0.3",
+    "stylelint": "^15.10.3",
+    "stylelint-config-standard": "^34.0.0"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "keywords": [
+    "shopify",
+    "theme",
+    "ecommerce",
+    "online-store-2.0",
+    "clothing",
+    "apparel",
+    "fashion"
+  ]
+}

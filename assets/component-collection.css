@@ -1,0 +1,13 @@
+.collection { padding: 2rem 0; }
+.collection__header { margin-bottom: 2rem; }
+.collection__title { font-size: 2.5rem; margin-bottom: 0.5rem; }
+.collection__count { color: #666; }
+.collection__toolbar { display: flex; justify-content: space-between; align-items: start; gap: 2rem; margin-bottom: 2rem; flex-wrap: wrap; }
+.facets { display: flex; gap: 1rem; flex-wrap: wrap; }
+.facet { border: 1px solid var(--color-border); border-radius: var(--border-radius); }
+.facet__summary { padding: 0.75rem 1rem; cursor: pointer; font-weight: 600; }
+.facet__content { padding: 1rem; }
+.facet__list { list-style: none; padding: 0; margin: 0; }
+.facet__item { margin-bottom: 0.5rem; }
+.facet__label { display: flex; align-items: center; gap: 0.5rem; cursor: pointer; }
+.collection__sorting select { min-width: 200px; }

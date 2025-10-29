@@ -1,0 +1,11 @@
+.image-with-text { padding: 4rem 0; }
+.image-with-text__grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+.image-with-text--right .image-with-text__grid { direction: rtl; }
+.image-with-text--right .image-with-text__grid > * { direction: ltr; }
+.image-with-text__media img { width: 100%; height: auto; display: block; }
+.image-with-text__heading { font-size: 2rem; margin-bottom: 1rem; }
+.image-with-text__text { margin-bottom: 1.5rem; }
+@media screen and (max-width: 989px) {
+  .image-with-text__grid { grid-template-columns: 1fr; }
+  .image-with-text--right .image-with-text__grid { direction: ltr; }
+}

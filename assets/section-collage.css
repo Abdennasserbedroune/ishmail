@@ -1,0 +1,9 @@
+.collage { padding: 4rem 0; }
+.collage__heading { text-align: center; font-size: 2rem; margin-bottom: 3rem; }
+.collage__grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1rem; }
+.collage__item { position: relative; overflow: hidden; border-radius: var(--border-radius); }
+.collage__link { display: block; position: relative; }
+.collage__item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s; }
+.collage__item:hover img { transform: scale(1.05); }
+.collage__overlay { position: absolute; bottom: 0; left: 0; right: 0; padding: 2rem; background: linear-gradient(to top, rgba(0,0,0,0.7), transparent); color: white; }
+.collage__title { margin: 0; font-size: 1.5rem; }

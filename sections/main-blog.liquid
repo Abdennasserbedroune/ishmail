@@ -1,0 +1,98 @@
+<div class="blog page-width">
+  <header class="blog__header">
+    <h1>{{ blog.title | escape }}</h1>
+  </header>
+
+  <div class="blog__articles">
+    {% for article in blog.articles %}
+      <article class="article-card">
+        {% if article.image %}
+          <a href="{{ article.url }}" class="article-card__image-wrapper">
+            <img
+              src="{{ article.image | image_url: width: 600 }}"
+              alt="{{ article.image.alt | escape }}"
+              loading="lazy"
+              width="{{ article.image.width }}"
+              height="{{ article.image.height }}"
+            >
+          </a>
+        {% endif %}
+
+        <div class="article-card__content">
+          <h2 class="article-card__title">
+            <a href="{{ article.url }}">{{ article.title | escape }}</a>
+          </h2>
+          
+          <p class="article-card__meta">
+            {{ article.published_at | date: format: 'month_day_year' }}
+            {% if article.author %} &middot; {{ article.author }}{% endif %}
+          </p>
+
+          {% if article.excerpt != blank %}
+            <div class="article-card__excerpt rte">
+              {{ article.excerpt }}
+            </div>
+          {% endif %}
+
+          <a href="{{ article.url }}" class="article-card__link">
+            {{ 'blogs.article.read_more' | t }}
+          </a>
+        </div>
+      </article>
+    {% endfor %}
+  </div>
+
+  {% if paginate.pages > 1 %}
+    {% render 'pagination', paginate: paginate %}
+  {% endif %}
+</div>
+
+{% schema %}
+{
+  "name": "Blog",
+  "settings": [
+    {
+      "type": "select",
+      "id": "layout",
+      "options": [
+        {
+          "value": "grid",
+          "label": "Grid"
+        },
+        {
+          "value": "list",
+          "label": "List"
+        }
+      ],
+      "default": "grid",
+      "label": "Layout"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_image",
+      "default": true,
+      "label": "Show featured images"
+    },
+    {
+      "type": "select",
+      "id": "image_height",
+      "options": [
+        {
+          "value": "small",
+          "label": "Small"
+        },
+        {
+          "value": "medium",
+          "label": "Medium"
+        },
+        {
+          "value": "large",
+          "label": "Large"
+        }
+      ],
+      "default": "medium",
+      "label": "Image height"
+    }
+  ]
+}
+{% endschema %}

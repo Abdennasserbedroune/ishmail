@@ -1,0 +1,141 @@
+{% liquid
+  assign header_transparent = false
+  if template.name == 'index' and section.settings.enable_transparent_header
+    assign header_transparent = true
+  endif
+%}
+
+<link rel="stylesheet" href="{{ 'component-header.css' | asset_url }}" media="print" onload="this.media='all'">
+<noscript>{{ 'component-header.css' | asset_url | stylesheet_tag }}</noscript>
+
+<header class="header{% if header_transparent %} header--transparent{% endif %}{% if section.settings.enable_sticky_header %} header--sticky{% endif %}" data-header>
+  <div class="header__wrapper page-width">
+    <nav class="header__nav">
+      <button type="button" class="header__menu-toggle" aria-controls="mobile-menu" aria-expanded="false" data-menu-toggle>
+        {% render 'icon-hamburger' %}
+        <span class="visually-hidden">{{ 'general.accessibility.menu' | t }}</span>
+      </button>
+
+      <div class="header__logo">
+        <a href="{{ routes.root_url }}" class="header__logo-link">
+          {% if section.settings.logo != blank %}
+            <img
+              src="{{ section.settings.logo | image_url: width: 300 }}"
+              alt="{{ shop.name | escape }}"
+              width="{{ section.settings.logo.width }}"
+              height="{{ section.settings.logo.height }}"
+              loading="eager"
+              class="header__logo-image"
+            >
+          {% else %}
+            <span class="header__logo-text">{{ shop.name }}</span>
+          {% endif %}
+        </a>
+      </div>
+
+      <ul class="header__menu-list" role="list">
+        {% for link in section.settings.menu.links %}
+          <li class="header__menu-item{% if link.links != blank %} header__menu-item--has-dropdown{% endif %}">
+            <a href="{{ link.url }}" class="header__menu-link" {% if link.current %} aria-current="page"{% endif %}>
+              {{ link.title | escape }}
+            </a>
+            {% if link.links != blank %}
+              <ul class="header__submenu" role="list">
+                {% for child_link in link.links %}
+                  <li class="header__submenu-item">
+                    <a href="{{ child_link.url }}" class="header__submenu-link" {% if child_link.current %} aria-current="page"{% endif %}>
+                      {{ child_link.title | escape }}
+                    </a>
+                  </li>
+                {% endfor %}
+              </ul>
+            {% endif %}
+          </li>
+        {% endfor %}
+      </ul>
+
+      <div class="header__icons">
+        <a href="{{ routes.search_url }}" class="header__icon" aria-label="{{ 'general.search.search' | t }}">
+          {% render 'icon-search' %}
+        </a>
+        
+        <a href="{{ routes.account_url }}" class="header__icon" aria-label="{{ 'customer.account.title' | t }}">
+          {% render 'icon-account' %}
+        </a>
+
+        <a href="{{ routes.cart_url }}" class="header__icon header__cart" data-cart-icon aria-label="{{ 'sections.header.cart' | t }}">
+          {% render 'icon-cart' %}
+          <span class="header__cart-count" data-cart-count>{{ cart.item_count }}</span>
+        </a>
+      </div>
+    </nav>
+  </div>
+
+  <div class="mobile-menu" id="mobile-menu" data-mobile-menu>
+    <div class="mobile-menu__header">
+      <button type="button" class="mobile-menu__close" aria-label="{{ 'general.accessibility.close' | t }}" data-menu-close>
+        {% render 'icon-close' %}
+      </button>
+    </div>
+    
+    <nav class="mobile-menu__nav">
+      <ul class="mobile-menu__list" role="list">
+        {% for link in section.settings.menu.links %}
+          <li class="mobile-menu__item">
+            <a href="{{ link.url }}" class="mobile-menu__link" {% if link.current %} aria-current="page"{% endif %}>
+              {{ link.title | escape }}
+            </a>
+            {% if link.links != blank %}
+              <button type="button" class="mobile-menu__expand" aria-expanded="false">
+                {% render 'icon-chevron' %}
+              </button>
+              <ul class="mobile-menu__submenu" role="list">
+                {% for child_link in link.links %}
+                  <li class="mobile-menu__submenu-item">
+                    <a href="{{ child_link.url }}" class="mobile-menu__submenu-link">
+                      {{ child_link.title | escape }}
+                    </a>
+                  </li>
+                {% endfor %}
+              </ul>
+            {% endif %}
+          </li>
+        {% endfor %}
+      </ul>
+    </nav>
+  </div>
+  <div class="mobile-menu__overlay" data-menu-overlay></div>
+</header>
+
+<script src="{{ 'component-header.js' | asset_url }}" defer="defer"></script>
+
+{% schema %}
+{
+  "name": "Header",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Logo image"
+    },
+    {
+      "type": "link_list",
+      "id": "menu",
+      "default": "main-menu",
+      "label": "Menu"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_sticky_header",
+      "default": true,
+      "label": "Enable sticky header"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_transparent_header",
+      "default": false,
+      "label": "Enable transparent header on homepage"
+    }
+  ]
+}
+{% endschema %}

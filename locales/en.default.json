@@ -1,0 +1,150 @@
+{
+  "general": {
+    "accessibility": {
+      "skip_to_text": "Skip to content",
+      "close": "Close",
+      "menu": "Menu",
+      "refresh_page": "Choosing a selection results in a full page refresh.",
+      "link_messages": {
+        "new_window": "Opens in a new window."
+      }
+    },
+    "meta": {
+      "tags": "Tagged \"{{ tags }}\"",
+      "page": "Page {{ page }}",
+      "tagged": "tagged {{ tags }}"
+    },
+    "password_page": {
+      "opening_soon": "Opening Soon",
+      "login_form_password_label": "Password",
+      "login_form_password_placeholder": "Your password",
+      "login_form_submit": "Enter",
+      "admin_link_html": "Are you the store owner? <a href=\"/admin\">Log in here</a>"
+    },
+    "search": {
+      "search": "Search",
+      "title": "Search",
+      "placeholder": "Search our store",
+      "submit": "Search",
+      "results_with_count": "{{ count }} result for \"{{ terms }}\"",
+      "no_results": "No results found for \"{{ terms }}\". Please try again with a different query."
+    },
+    "social": {
+      "share": "Share"
+    },
+    "continue_shopping": "Continue shopping",
+    "pagination": {
+      "label": "Pagination",
+      "page": "Page {{ number }}",
+      "next": "Next",
+      "previous": "Previous"
+    },
+    "breadcrumbs": {
+      "home": "Home"
+    }
+  },
+  "newsletter": {
+    "email_placeholder": "Email address",
+    "submit": "Subscribe",
+    "success": "Thanks for subscribing"
+  },
+  "products": {
+    "product": {
+      "add_to_cart": "Add to cart",
+      "sold_out": "Sold out",
+      "unavailable": "Unavailable",
+      "on_sale": "Sale",
+      "save": "Save",
+      "quantity": {
+        "label": "Quantity",
+        "input_label": "Quantity for {{ product }}",
+        "increase": "Increase quantity for {{ product }}",
+        "decrease": "Decrease quantity for {{ product }}"
+      },
+      "price": {
+        "regular_price": "Regular price",
+        "sale_price": "Sale price"
+      }
+    },
+    "facets": {
+      "clear_all": "Clear all",
+      "from": "From",
+      "to": "To"
+    },
+    "sorting": {
+      "title": "Sort by",
+      "featured": "Featured",
+      "best_selling": "Best selling",
+      "az": "Alphabetically, A-Z",
+      "za": "Alphabetically, Z-A",
+      "price_ascending": "Price, low to high",
+      "price_descending": "Price, high to low",
+      "date_ascending": "Date, old to new",
+      "date_descending": "Date, new to old"
+    }
+  },
+  "sections": {
+    "header": {
+      "cart": "Cart"
+    },
+    "cart": {
+      "title": "Your cart",
+      "empty": "Your cart is currently empty.",
+      "update": "Update",
+      "checkout": "Check out",
+      "view_cart": "View cart",
+      "subtotal": "Subtotal",
+      "note": "Order special instructions",
+      "shipping_at_checkout": "Taxes and shipping calculated at checkout",
+      "headings": {
+        "product": "Product",
+        "price": "Price",
+        "quantity": "Quantity",
+        "total": "Total"
+      },
+      "remove_title": "Remove {{ title }}",
+      "cart_error": "There was an error updating your cart. Please try again.",
+      "quantity_error": "You can only add {{ quantity }} of this item to your cart.",
+      "notification": {
+        "item_added": "Item added to your cart"
+      }
+    },
+    "collection": {
+      "empty": "No products found",
+      "product_count": "{{ count }} products"
+    },
+    "featured_collection": {
+      "view_all": "View all",
+      "no_collection": "Please select a collection in theme settings"
+    },
+    "announcement": {
+      "announcement": "Announcement"
+    },
+    "404": {
+      "title": "Page not found",
+      "subtitle": "The page you requested does not exist.",
+      "link": "Continue shopping"
+    }
+  },
+  "blogs": {
+    "article": {
+      "by_author": "by {{ author }}",
+      "read_more": "Read more",
+      "comments": "{{ count }} comments",
+      "comment_form_title": "Leave a comment",
+      "name": "Name",
+      "email": "Email",
+      "message": "Message",
+      "post_comment": "Post comment",
+      "comment_success": "Your comment was posted successfully! Thank you!"
+    }
+  },
+  "customer": {
+    "account": {
+      "title": "Account"
+    }
+  },
+  "footer": {
+    "copyright": "All rights reserved."
+  }
+}

@@ -1,0 +1,6 @@
+.search { padding: 2rem 0; }
+.search__header { margin-bottom: 2rem; }
+.search__form { display: flex; gap: 0.5rem; margin-top: 1rem; }
+.search__input { flex: 1; }
+.search__results { margin-top: 2rem; }
+.search__results-count { margin-bottom: 1.5rem; color: #666; }
