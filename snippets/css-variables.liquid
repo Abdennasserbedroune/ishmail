@@ -1,0 +1,33 @@
+<style>
+  :root {
+    --color-primary: {{ settings.color_primary }};
+    --color-secondary: {{ settings.color_secondary }};
+    --color-text: {{ settings.color_text }};
+    --color-background: {{ settings.color_background }};
+    --color-border: {{ settings.color_border }};
+    --color-success: {{ settings.color_success }};
+    --color-error: {{ settings.color_error }};
+
+    --font-heading: {{ settings.type_header_font.family }}, {{ settings.type_header_font.fallback_families }};
+    --font-body: {{ settings.type_body_font.family }}, {{ settings.type_body_font.fallback_families }};
+
+    --font-heading-weight: {{ settings.type_header_font.weight }};
+    --font-body-weight: {{ settings.type_body_font.weight }};
+
+    --font-size-base: {{ settings.font_size_base }}px;
+    --font-size-heading: {{ settings.font_size_heading }}px;
+
+    --spacing-small: 0.5rem;
+    --spacing-medium: 1rem;
+    --spacing-large: 2rem;
+    --spacing-xlarge: 4rem;
+
+    --border-radius: {{ settings.border_radius }}px;
+    --border-width: 1px;
+
+    --transition-duration: 0.3s;
+  }
+</style>
+
+{{ settings.type_header_font | font_face: font_display: 'swap' }}
+{{ settings.type_body_font | font_face: font_display: 'swap' }}

@@ -1,0 +1,69 @@
+{{ 'component-cart.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'cart.js' | asset_url }}" defer="defer"></script>
+
+<div class="cart page-width" data-section-id="{{ section.id }}">
+  <h1 class="cart__title">{{ 'sections.cart.title' | t }}</h1>
+
+  {% if cart.item_count > 0 %}
+    <div class="cart__content">
+      <form action="{{ routes.cart_url }}" method="post" class="cart__form">
+        <table class="cart__table">
+          <thead>
+            <tr>
+              <th>{{ 'sections.cart.headings.product' | t }}</th>
+              <th>{{ 'sections.cart.headings.price' | t }}</th>
+              <th>{{ 'sections.cart.headings.quantity' | t }}</th>
+              <th>{{ 'sections.cart.headings.total' | t }}</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for item in cart.items %}
+              <tr class="cart__item" data-index="{{ forloop.index }}">
+                <td class="cart__item-details">
+                  {% if item.image %}
+                    <img src="{{ item.image | image_url: width: 100 }}" alt="{{ item.image.alt | escape }}" loading="lazy" width="100" height="100">
+                  {% endif %}
+                  <div class="cart__item-info">
+                    <a href="{{ item.url }}" class="cart__item-title">{{ item.product.title }}</a>
+                    {% unless item.variant.title contains 'Default' %}
+                      <p class="cart__item-variant">{{ item.variant.title }}</p>
+                    {% endunless %}
+                  </div>
+                </td>
+                <td class="cart__item-price">
+                  {{ item.original_price | money }}
+                </td>
+                <td class="cart__item-quantity">
+                  <input type="number" name="updates[]" value="{{ item.quantity }}" min="0" data-index="{{ forloop.index }}" class="cart__quantity-input">
+                </td>
+                <td class="cart__item-total">
+                  {{ item.final_line_price | money }}
+                </td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+        <button type="submit" name="update" class="cart__update button button--secondary">{{ 'sections.cart.update' | t }}</button>
+      </form>
+    </div>
+  {% else %}
+    <div class="cart__empty">
+      <p>{{ 'sections.cart.empty' | t }}</p>
+      <a href="{{ routes.all_products_collection_url }}" class="button button--primary">{{ 'general.continue_shopping' | t }}</a>
+    </div>
+  {% endif %}
+</div>
+
+{% schema %}
+{
+  "name": "Cart",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_vendor",
+      "default": false,
+      "label": "Show vendor"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,44 @@
+<div class="product-card">
+  <a href="{{ product.url }}" class="product-card__link">
+    <div class="product-card__image-wrapper">
+      {% if product.featured_media %}
+        <img
+          src="{{ product.featured_media | image_url: width: 600 }}"
+          srcset="
+            {{ product.featured_media | image_url: width: 300 }} 300w,
+            {{ product.featured_media | image_url: width: 600 }} 600w,
+            {{ product.featured_media | image_url: width: 900 }} 900w
+          "
+          sizes="(min-width: 990px) 25vw, (min-width: 750px) 33vw, 50vw"
+          alt="{{ product.featured_media.alt | escape }}"
+          loading="lazy"
+          width="{{ product.featured_media.width }}"
+          height="{{ product.featured_media.height }}"
+          class="product-card__image"
+        >
+      {% else %}
+        {{ 'product-1' | placeholder_svg_tag: 'product-card__image placeholder-svg' }}
+      {% endif %}
+
+      {% if product.compare_at_price > product.price %}
+        <span class="product-card__badge badge badge--sale">{{ 'products.product.on_sale' | t }}</span>
+      {% endif %}
+
+      {% unless product.available %}
+        <span class="product-card__badge badge badge--sold-out">{{ 'products.product.sold_out' | t }}</span>
+      {% endunless %}
+    </div>
+
+    <div class="product-card__info">
+      {% if product.vendor != blank %}
+        <p class="product-card__vendor">{{ product.vendor }}</p>
+      {% endif %}
+
+      <h3 class="product-card__title">{{ product.title | escape }}</h3>
+
+      <div class="product-card__price">
+        {% render 'price', product: product, price_class: 'product-card__price-text' %}
+      </div>
+    </div>
+  </a>
+</div>

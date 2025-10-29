@@ -1,0 +1,83 @@
+<div class="list-collections page-width">
+  {% if section.settings.title != blank %}
+    <h1 class="list-collections__title">{{ section.settings.title | escape }}</h1>
+  {% endif %}
+
+  <div class="collection-list">
+    {% for collection in collections %}
+      <div class="collection-list__item">
+        <a href="{{ collection.url }}" class="collection-list__link">
+          {% if collection.featured_image %}
+            <div class="collection-list__image">
+              <img
+                src="{{ collection.featured_image | image_url: width: 600 }}"
+                alt="{{ collection.featured_image.alt | escape }}"
+                loading="lazy"
+                width="{{ collection.featured_image.width }}"
+                height="{{ collection.featured_image.height }}"
+              >
+            </div>
+          {% else %}
+            {{ 'collection-1' | placeholder_svg_tag: 'placeholder-svg' }}
+          {% endif %}
+          
+          <h2 class="collection-list__title">{{ collection.title | escape }}</h2>
+          
+          {% if collection.description != blank %}
+            <p class="collection-list__description">{{ collection.description | strip_html | truncate: 100 }}</p>
+          {% endif %}
+        </a>
+      </div>
+    {% endfor %}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Collections list",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "default": "Collections",
+      "label": "Heading"
+    },
+    {
+      "type": "select",
+      "id": "sort",
+      "options": [
+        {
+          "value": "alphabetical",
+          "label": "Alphabetically"
+        },
+        {
+          "value": "date",
+          "label": "Date"
+        }
+      ],
+      "default": "alphabetical",
+      "label": "Sort by"
+    },
+    {
+      "type": "select",
+      "id": "image_ratio",
+      "options": [
+        {
+          "value": "square",
+          "label": "Square"
+        },
+        {
+          "value": "portrait",
+          "label": "Portrait"
+        },
+        {
+          "value": "landscape",
+          "label": "Landscape"
+        }
+      ],
+      "default": "square",
+      "label": "Image ratio"
+    }
+  ]
+}
+{% endschema %}

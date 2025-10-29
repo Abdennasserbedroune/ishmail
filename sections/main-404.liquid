@@ -1,0 +1,32 @@
+<div class="not-found page-width">
+  <div class="not-found__content">
+    <h1 class="not-found__title">{{ 'sections.404.title' | t }}</h1>
+    <p class="not-found__subtitle">{{ 'sections.404.subtitle' | t }}</p>
+    
+    <a href="{{ routes.root_url }}" class="button button--primary">
+      {{ 'sections.404.link' | t }}
+    </a>
+  </div>
+</div>
+
+<style>
+  .not-found {
+    text-align: center;
+    padding: 4rem 0;
+  }
+  .not-found__title {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+  }
+  .not-found__subtitle {
+    font-size: 1.25rem;
+    margin-bottom: 2rem;
+  }
+</style>
+
+{% schema %}
+{
+  "name": "404 page",
+  "settings": []
+}
+{% endschema %}

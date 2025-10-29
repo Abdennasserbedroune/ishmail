@@ -1,0 +1,79 @@
+{
+  "current": {
+    "color_primary": "#0E7C86",
+    "color_secondary": "#2A2A2A",
+    "color_text": "#2A2A2A",
+    "color_background": "#FFFFFF",
+    "color_border": "#E8E8E8",
+    "color_success": "#28A745",
+    "color_error": "#DC3545",
+    "type_header_font": "assistant_n4",
+    "type_body_font": "assistant_n4",
+    "font_size_base": 16,
+    "font_size_heading": 32,
+    "border_radius": 4,
+    "cart_type": "drawer",
+    "sections": {
+      "announcement-bar": {
+        "type": "announcement-bar",
+        "settings": {
+          "show_announcement": true,
+          "text": "Free shipping on orders over $50",
+          "color_background": "#0E7C86",
+          "color_text": "#ffffff"
+        }
+      },
+      "header": {
+        "type": "header",
+        "settings": {
+          "enable_sticky_header": true,
+          "enable_transparent_header": false
+        }
+      },
+      "footer": {
+        "type": "footer",
+        "blocks": {
+          "footer-0": {
+            "type": "link_list",
+            "settings": {
+              "heading": "Quick links",
+              "menu": "footer"
+            }
+          },
+          "footer-1": {
+            "type": "link_list",
+            "settings": {
+              "heading": "Info",
+              "menu": "footer"
+            }
+          },
+          "footer-2": {
+            "type": "newsletter",
+            "settings": {
+              "heading": "Subscribe to our emails",
+              "text": "<p>Be the first to know about new collections and exclusive offers.</p>"
+            }
+          }
+        },
+        "block_order": [
+          "footer-0",
+          "footer-1",
+          "footer-2"
+        ],
+        "settings": {
+          "show_social": true,
+          "show_payment_icons": true
+        }
+      }
+    }
+  },
+  "presets": {
+    "Default": {
+      "color_primary": "#0E7C86",
+      "color_secondary": "#2A2A2A",
+      "color_text": "#2A2A2A",
+      "color_background": "#FFFFFF",
+      "cart_type": "drawer"
+    }
+  }
+}

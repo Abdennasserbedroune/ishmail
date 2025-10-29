@@ -1,0 +1,8 @@
+{% liquid
+  assign color_name = value | handle
+  assign color_value = value
+%}
+
+<span class="color-swatch" style="background-color: {{ color_value }};" title="{{ value | escape }}">
+  <span class="visually-hidden">{{ value }}</span>
+</span>

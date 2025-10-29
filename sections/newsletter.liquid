@@ -1,0 +1,70 @@
+{{ 'section-newsletter.css' | asset_url | stylesheet_tag }}
+
+<div class="newsletter section-{{ section.id }}-padding">
+  <div class="newsletter__wrapper page-width">
+    {% if section.settings.heading != blank %}
+      <h2 class="newsletter__heading">{{ section.settings.heading | escape }}</h2>
+    {% endif %}
+    
+    {% if section.settings.subheading != blank %}
+      <p class="newsletter__subheading">{{ section.settings.subheading | escape }}</p>
+    {% endif %}
+
+    {% form 'customer', class: 'newsletter__form' %}
+      {% if form.posted_successfully? %}
+        <div class="form-success" tabindex="-1" autofocus>
+          {{ 'newsletter.success' | t }}
+        </div>
+      {% endif %}
+      
+      {% if form.errors %}
+        <div class="form-error">
+          {{ form.errors | default_errors }}
+        </div>
+      {% endif %}
+
+      <div class="newsletter__input-wrapper">
+        <label for="newsletter-email-{{ section.id }}" class="visually-hidden">
+          {{ 'newsletter.email_placeholder' | t }}
+        </label>
+        <input
+          type="email"
+          name="contact[email]"
+          id="newsletter-email-{{ section.id }}"
+          class="newsletter__input"
+          placeholder="{{ 'newsletter.email_placeholder' | t }}"
+          aria-required="true"
+          required
+        >
+        <button type="submit" class="newsletter__button button button--primary" name="commit">
+          {{ 'newsletter.submit' | t }}
+        </button>
+      </div>
+    {% endform %}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Newsletter",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "default": "Subscribe to our newsletter",
+      "label": "Heading"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subheading"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Newsletter"
+    }
+  ]
+}
+{% endschema %}

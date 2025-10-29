@@ -1,0 +1,48 @@
+{% liquid
+  assign product_price = product.price
+  assign product_compare_at_price = product.compare_at_price
+  assign product_available = product.available
+  
+  if use_variant
+    assign target = product.selected_or_first_available_variant
+    assign product_price = target.price
+    assign product_compare_at_price = target.compare_at_price
+    assign product_available = target.available
+  endif
+%}
+
+<div class="price {% if product_compare_at_price > product_price %}price--on-sale{% endif %} {% unless product_available %}price--sold-out{% endunless %} {{ price_class }}">
+  <div class="price__container">
+    <div class="price__regular">
+      <span class="visually-hidden visually-hidden--inline">{{ 'products.product.price.regular_price' | t }}</span>
+      <span class="price-item price-item--regular">
+        {{ product_price | money }}
+      </span>
+    </div>
+    
+    {% if product_compare_at_price > product_price %}
+      <div class="price__sale">
+        <span class="visually-hidden visually-hidden--inline">{{ 'products.product.price.sale_price' | t }}</span>
+        <span class="price-item price-item--sale">
+          {{ product_price | money }}
+        </span>
+        <span class="visually-hidden visually-hidden--inline">{{ 'products.product.price.regular_price' | t }}</span>
+        <s class="price-item price-item--regular">
+          {{ product_compare_at_price | money }}
+        </s>
+      </div>
+      
+      {% if show_badges %}
+        <span class="badge price__badge-sale">
+          {{ 'products.product.save' | t }} {{ product_compare_at_price | minus: product_price | times: 100.0 | divided_by: product_compare_at_price | round }}%
+        </span>
+      {% endif %}
+    {% endif %}
+  </div>
+
+  {% unless product_available %}
+    <div class="price__availability">
+      <span>{{ 'products.product.sold_out' | t }}</span>
+    </div>
+  {% endunless %}
+</div>

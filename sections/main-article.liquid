@@ -1,0 +1,98 @@
+<article class="article page-width">
+  <header class="article__header">
+    <h1 class="article__title">{{ article.title | escape }}</h1>
+    
+    <div class="article__meta">
+      {% if section.settings.show_date %}
+        <time datetime="{{ article.published_at | date: '%Y-%m-%d' }}">
+          {{ article.published_at | date: format: 'month_day_year' }}
+        </time>
+      {% endif %}
+      
+      {% if section.settings.show_author and article.author %}
+        <span class="article__author">{{ 'blogs.article.by_author' | t: author: article.author }}</span>
+      {% endif %}
+    </div>
+  </header>
+
+  {% if article.image %}
+    <div class="article__image">
+      <img
+        src="{{ article.image | image_url: width: 1200 }}"
+        alt="{{ article.image.alt | escape }}"
+        loading="eager"
+        width="{{ article.image.width }}"
+        height="{{ article.image.height }}"
+      >
+    </div>
+  {% endif %}
+
+  <div class="article__content rte">
+    {{ article.content }}
+  </div>
+
+  {% if blog.comments_enabled? %}
+    <div class="article__comments">
+      <h2>{{ 'blogs.article.comments' | t: count: article.comments_count }}</h2>
+      
+      {% paginate article.comments by 5 %}
+        {% for comment in article.comments %}
+          <div class="comment">
+            <p class="comment__author">{{ comment.author }}</p>
+            <p class="comment__date">{{ comment.created_at | date: format: 'month_day_year' }}</p>
+            <div class="comment__content">{{ comment.content }}</div>
+          </div>
+        {% endfor %}
+        
+        {% if paginate.pages > 1 %}
+          {% render 'pagination', paginate: paginate %}
+        {% endif %}
+      {% endpaginate %}
+
+      {% form 'new_comment', article %}
+        <h3>{{ 'blogs.article.comment_form_title' | t }}</h3>
+        
+        {% if form.posted_successfully? %}
+          <p class="form-success">{{ 'blogs.article.comment_success' | t }}</p>
+        {% endif %}
+
+        <div class="form-group">
+          <label for="comment-author">{{ 'blogs.article.name' | t }}</label>
+          <input type="text" id="comment-author" name="comment[author]" required>
+        </div>
+
+        <div class="form-group">
+          <label for="comment-email">{{ 'blogs.article.email' | t }}</label>
+          <input type="email" id="comment-email" name="comment[email]" required>
+        </div>
+
+        <div class="form-group">
+          <label for="comment-body">{{ 'blogs.article.message' | t }}</label>
+          <textarea id="comment-body" name="comment[body]" required></textarea>
+        </div>
+
+        <button type="submit" class="button">{{ 'blogs.article.post_comment' | t }}</button>
+      {% endform %}
+    </div>
+  {% endif %}
+</article>
+
+{% schema %}
+{
+  "name": "Article",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_author",
+      "default": true,
+      "label": "Show author"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_date",
+      "default": true,
+      "label": "Show date"
+    }
+  ]
+}
+{% endschema %}

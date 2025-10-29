@@ -1,0 +1,191 @@
+{{ 'component-collection.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'collection-filters.js' | asset_url }}" defer="defer"></script>
+
+<div class="collection" data-section-id="{{ section.id }}">
+  <div class="page-width">
+    <div class="collection__header">
+      <h1 class="collection__title">{{ collection.title | escape }}</h1>
+      
+      {% if section.settings.show_product_count %}
+        <p class="collection__count">{{ 'sections.collection.product_count' | t: count: collection.products_count }}</p>
+      {% endif %}
+    </div>
+
+    <div class="collection__content">
+      {% if section.settings.enable_filtering or section.settings.enable_sorting %}
+        <div class="collection__toolbar">
+          {% if section.settings.enable_filtering %}
+            <facet-filters-form class="facets-wrapper">
+              <form id="FacetFiltersForm" class="facets">
+                <div class="facets__filters">
+                  {% for filter in collection.filters %}
+                    <details class="facet" data-index="{{ forloop.index }}">
+                      <summary class="facet__summary">
+                        <span>{{ filter.label | escape }}</span>
+                        {% render 'icon-chevron' %}
+                      </summary>
+                      <div class="facet__content">
+                        {% case filter.type %}
+                          {% when 'list' %}
+                            <ul class="facet__list" role="list">
+                              {% for value in filter.values %}
+                                <li class="facet__item">
+                                  <label class="facet__label">
+                                    <input
+                                      type="checkbox"
+                                      name="{{ value.param_name }}"
+                                      value="{{ value.value }}"
+                                      {% if value.active %}checked{% endif %}
+                                      class="facet__checkbox"
+                                    >
+                                    <span class="facet__text">{{ value.label | escape }}</span>
+                                    <span class="facet__count">({{ value.count }})</span>
+                                  </label>
+                                </li>
+                              {% endfor %}
+                            </ul>
+                          {% when 'price_range' %}
+                            <div class="facet__price-range">
+                              <div class="facet__price-inputs">
+                                <label for="Filter-{{ filter.label | escape }}-GTE">
+                                  {{ 'products.facets.from' | t }}
+                                </label>
+                                <input
+                                  type="number"
+                                  name="{{ filter.min_value.param_name }}"
+                                  id="Filter-{{ filter.label | escape }}-GTE"
+                                  {% if filter.min_value.value %}value="{{ filter.min_value.value | divided_by: 100.0 }}"{% endif %}
+                                  placeholder="0"
+                                  min="0"
+                                  max="{{ filter.range_max | divided_by: 100.0 }}"
+                                  class="facet__input"
+                                >
+                                <label for="Filter-{{ filter.label | escape }}-LTE">
+                                  {{ 'products.facets.to' | t }}
+                                </label>
+                                <input
+                                  type="number"
+                                  name="{{ filter.max_value.param_name }}"
+                                  id="Filter-{{ filter.label | escape }}-LTE"
+                                  {% if filter.max_value.value %}value="{{ filter.max_value.value | divided_by: 100.0 }}"{% endif %}
+                                  placeholder="{{ filter.range_max | divided_by: 100.0 }}"
+                                  min="0"
+                                  max="{{ filter.range_max | divided_by: 100.0 }}"
+                                  class="facet__input"
+                                >
+                              </div>
+                            </div>
+                        {% endcase %}
+                      </div>
+                    </details>
+                  {% endfor %}
+                </div>
+
+                {% if collection.filters != empty %}
+                  <div class="facets__actions">
+                    <a href="{{ collection.url }}" class="facets__clear">
+                      {{ 'products.facets.clear_all' | t }}
+                    </a>
+                  </div>
+                {% endif %}
+              </form>
+            </facet-filters-form>
+          {% endif %}
+
+          {% if section.settings.enable_sorting %}
+            <div class="collection__sorting">
+              <label for="SortBy" class="visually-hidden">{{ 'products.sorting.title' | t }}</label>
+              <select name="sort_by" id="SortBy" class="collection__sort-select" data-collection-sort>
+                {% assign sort_by = collection.sort_by | default: collection.default_sort_by %}
+                <option value="manual" {% if sort_by == 'manual' %}selected{% endif %}>{{ 'products.sorting.featured' | t }}</option>
+                <option value="best-selling" {% if sort_by == 'best-selling' %}selected{% endif %}>{{ 'products.sorting.best_selling' | t }}</option>
+                <option value="title-ascending" {% if sort_by == 'title-ascending' %}selected{% endif %}>{{ 'products.sorting.az' | t }}</option>
+                <option value="title-descending" {% if sort_by == 'title-descending' %}selected{% endif %}>{{ 'products.sorting.za' | t }}</option>
+                <option value="price-ascending" {% if sort_by == 'price-ascending' %}selected{% endif %}>{{ 'products.sorting.price_ascending' | t }}</option>
+                <option value="price-descending" {% if sort_by == 'price-descending' %}selected{% endif %}>{{ 'products.sorting.price_descending' | t }}</option>
+                <option value="created-descending" {% if sort_by == 'created-descending' %}selected{% endif %}>{{ 'products.sorting.date_descending' | t }}</option>
+                <option value="created-ascending" {% if sort_by == 'created-ascending' %}selected{% endif %}>{{ 'products.sorting.date_ascending' | t }}</option>
+              </select>
+            </div>
+          {% endif %}
+        </div>
+      {% endif %}
+
+      <div class="collection__products">
+        <div class="product-grid product-grid--{{ section.settings.columns_desktop }}-col-desktop product-grid--{{ section.settings.columns_mobile }}-col-mobile">
+          {% for product in collection.products %}
+            {% render 'product-card', product: product %}
+          {% else %}
+            <div class="collection__empty">
+              <p>{{ 'sections.collection.empty' | t }}</p>
+            </div>
+          {% endfor %}
+        </div>
+
+        {% if paginate.pages > 1 %}
+          {% render 'pagination', paginate: paginate %}
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Collection products",
+  "settings": [
+    {
+      "type": "range",
+      "id": "products_per_page",
+      "min": 8,
+      "max": 48,
+      "step": 4,
+      "default": 24,
+      "label": "Products per page"
+    },
+    {
+      "type": "range",
+      "id": "columns_desktop",
+      "min": 2,
+      "max": 5,
+      "step": 1,
+      "default": 4,
+      "label": "Number of columns on desktop"
+    },
+    {
+      "type": "select",
+      "id": "columns_mobile",
+      "options": [
+        {
+          "value": "1",
+          "label": "1 column"
+        },
+        {
+          "value": "2",
+          "label": "2 columns"
+        }
+      ],
+      "default": "2",
+      "label": "Number of columns on mobile"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_filtering",
+      "default": true,
+      "label": "Enable filtering"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_sorting",
+      "default": true,
+      "label": "Enable sorting"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_product_count",
+      "default": true,
+      "label": "Show product count"
+    }
+  ]
+}
+{% endschema %}

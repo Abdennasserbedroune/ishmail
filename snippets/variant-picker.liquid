@@ -1,0 +1,66 @@
+{% unless product.has_only_default_variant %}
+  <variant-selects class="variant-picker" data-section="{{ section.id }}" data-url="{{ product.url }}">
+    {% for option in product.options_with_values %}
+      <div class="variant-picker__option">
+        <label for="Option-{{ section.id }}-{{ forloop.index0 }}" class="variant-picker__label">
+          {{ option.name }}:
+          <span class="variant-picker__selected-value" data-selected-value>{{ option.selected_value }}</span>
+        </label>
+
+        {% if block.settings.picker_type == 'button' %}
+          <fieldset class="variant-picker__fieldset">
+            <legend class="visually-hidden">{{ option.name }}</legend>
+            
+            {% for value in option.values %}
+              {% liquid
+                assign option_disabled = true
+                for variant in product.variants
+                  if variant.available and variant.option1 == value or variant.option2 == value or variant.option3 == value
+                    assign option_disabled = false
+                    break
+                  endif
+                endfor
+              %}
+              
+              <input
+                type="radio"
+                id="{{ section.id }}-{{ option.name }}-{{ value | handle }}"
+                name="{{ option.name }}"
+                value="{{ value | escape }}"
+                {% if option.selected_value == value %}checked{% endif %}
+                {% if option_disabled %}disabled{% endif %}
+                class="variant-picker__input visually-hidden"
+                data-variant-input
+              >
+              
+              <label for="{{ section.id }}-{{ option.name }}-{{ value | handle }}" class="variant-picker__button">
+                {% if option.name == 'Color' or option.name == 'Colour' %}
+                  {% render 'color-swatch', value: value %}
+                {% else %}
+                  {{ value }}
+                {% endif %}
+              </label>
+            {% endfor %}
+          </fieldset>
+        {% else %}
+          <select
+            id="Option-{{ section.id }}-{{ forloop.index0 }}"
+            name="options[{{ option.name | escape }}]"
+            class="variant-picker__select"
+            data-variant-select
+          >
+            {% for value in option.values %}
+              <option value="{{ value | escape }}" {% if option.selected_value == value %}selected{% endif %}>
+                {{ value }}
+              </option>
+            {% endfor %}
+          </select>
+        {% endif %}
+      </div>
+    {% endfor %}
+
+    <script type="application/json" data-product-json>
+      {{ product.variants | json }}
+    </script>
+  </variant-selects>
+{% endunless %}

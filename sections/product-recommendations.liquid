@@ -1,0 +1,58 @@
+{{ 'section-product-recommendations.css' | asset_url | stylesheet_tag }}
+
+<div class="product-recommendations page-width" data-url="{{ routes.product_recommendations_url }}?section_id={{ section.id }}&product_id={{ product.id }}&limit={{ section.settings.products_to_show }}">
+  {% if recommendations.performed and recommendations.products_count > 0 %}
+    <div class="product-recommendations__inner">
+      {% if section.settings.heading != blank %}
+        <h2 class="product-recommendations__heading">{{ section.settings.heading | escape }}</h2>
+      {% endif %}
+
+      <div class="product-grid product-grid--{{ section.settings.products_to_show }}-col-desktop">
+        {% for product in recommendations.products %}
+          {% render 'product-card', product: product %}
+        {% endfor %}
+      </div>
+    </div>
+  {% endif %}
+</div>
+
+<script>
+  if (typeof window.Shopify !== 'undefined' && window.Shopify.designMode) {
+    const recommendationsEl = document.querySelector('.product-recommendations');
+    if (recommendationsEl) {
+      fetch(recommendationsEl.dataset.url)
+        .then(response => response.text())
+        .then(text => {
+          const html = document.createElement('div');
+          html.innerHTML = text;
+          const recommendations = html.querySelector('.product-recommendations');
+          if (recommendations && recommendations.innerHTML.trim().length) {
+            recommendationsEl.innerHTML = recommendations.innerHTML;
+          }
+        });
+    }
+  }
+</script>
+
+{% schema %}
+{
+  "name": "Product recommendations",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "default": "You may also like",
+      "label": "Heading"
+    },
+    {
+      "type": "range",
+      "id": "products_to_show",
+      "min": 2,
+      "max": 10,
+      "step": 1,
+      "default": 4,
+      "label": "Maximum products to show"
+    }
+  ]
+}
+{% endschema %}

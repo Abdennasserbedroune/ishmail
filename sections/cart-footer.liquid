@@ -1,0 +1,35 @@
+<div class="cart-footer page-width">
+  {% if section.settings.show_cart_note %}
+    <div class="cart-footer__note">
+      <label for="cart-note">{{ 'sections.cart.note' | t }}</label>
+      <textarea id="cart-note" name="note" class="cart-footer__note-textarea">{{ cart.note }}</textarea>
+    </div>
+  {% endif %}
+
+  <div class="cart-footer__totals">
+    <div class="cart-footer__subtotal">
+      <span>{{ 'sections.cart.subtotal' | t }}</span>
+      <span>{{ cart.total_price | money }}</span>
+    </div>
+    
+    <p class="cart-footer__shipping-message">{{ 'sections.cart.shipping_at_checkout' | t }}</p>
+    
+    <button type="submit" name="checkout" class="cart-footer__checkout button button--primary">
+      {{ 'sections.cart.checkout' | t }}
+    </button>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Cart footer",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_cart_note",
+      "default": true,
+      "label": "Show cart note"
+    }
+  ]
+}
+{% endschema %}
