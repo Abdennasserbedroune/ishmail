@@ -97,8 +97,9 @@ Configure colors, typography, and other global settings through the Shopify them
 3. Navigate to **Theme settings**
 
 Default configuration includes:
-- **Primary Color**: #0E7C86 (Teal)
-- **Fonts**: System fonts with web font support
+- **Primary Color**: #000000 (Black)
+- **Design Aesthetic**: Minimal, clean with generous white space
+- **Fonts**: Light weight (300) sans-serif fonts
 - **Cart Type**: Drawer (configurable to page)
 
 ### Menus
@@ -152,12 +153,21 @@ Add social media links in **Theme settings > Social media**
 
 Global styles are in `/assets/theme.css`. Component-specific styles use the BEM naming convention in `/assets/component-*.css` files.
 
+**Design Philosophy:**
+- Minimal, clean aesthetic inspired by contemporary design
+- Light font weights (300) throughout
+- Sharp corners (border-radius: 0)
+- Black and white color palette with subtle grays
+- Generous white space and breathing room
+- Subtle hover interactions using opacity
+
 CSS variables for theming:
 ```css
---color-primary: Main brand color
---color-secondary: Secondary brand color
---font-heading: Heading font family
---font-body: Body font family
+--color-primary: #000000 (Black)
+--color-secondary: #666666 (Gray)
+--color-text: #000000 (Black)
+--color-background: #FFFFFF (White)
+--color-border: #E0E0E0 (Light gray)
 ```
 
 ### Adding JavaScript

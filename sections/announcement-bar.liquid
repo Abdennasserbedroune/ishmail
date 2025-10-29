@@ -18,16 +18,24 @@
 
 <style>
   .announcement-bar {
-    padding: 1rem 0;
+    padding: 0.75rem 0;
     text-align: center;
   }
   .announcement-bar__text {
     margin: 0;
-    font-size: 0.875rem;
+    font-size: 0.75rem;
+    font-weight: 300;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
   }
   .announcement-bar__link {
     color: inherit;
-    text-decoration: underline;
+    text-decoration: none;
+    border-bottom: 1px solid currentColor;
+    transition: opacity 0.2s;
+  }
+  .announcement-bar__link:hover {
+    opacity: 0.7;
   }
 </style>
 
@@ -55,7 +63,7 @@
     {
       "type": "color",
       "id": "color_background",
-      "default": "#0E7C86",
+      "default": "#000000",
       "label": "Background"
     },
     {

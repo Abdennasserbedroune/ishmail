@@ -18,19 +18,19 @@
         "type": "color",
         "id": "color_primary",
         "label": "Primary color",
-        "default": "#0E7C86"
+        "default": "#000000"
       },
       {
         "type": "color",
         "id": "color_secondary",
         "label": "Secondary color",
-        "default": "#2A2A2A"
+        "default": "#666666"
       },
       {
         "type": "color",
         "id": "color_text",
         "label": "Text color",
-        "default": "#2A2A2A"
+        "default": "#000000"
       },
       {
         "type": "color",
@@ -42,19 +42,19 @@
         "type": "color",
         "id": "color_border",
         "label": "Border color",
-        "default": "#E8E8E8"
+        "default": "#E0E0E0"
       },
       {
         "type": "color",
         "id": "color_success",
         "label": "Success color",
-        "default": "#28A745"
+        "default": "#000000"
       },
       {
         "type": "color",
         "id": "color_error",
         "label": "Error color",
-        "default": "#DC3545"
+        "default": "#000000"
       }
     ]
   },
@@ -114,7 +114,7 @@
         "step": 2,
         "unit": "px",
         "label": "Button and input border radius",
-        "default": 4
+        "default": 0
       },
       {
         "type": "select",
