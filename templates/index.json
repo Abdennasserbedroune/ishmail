@@ -11,14 +11,12 @@
         "text_alignment": "center"
       }
     },
-    "featured_collection_1": {
-      "type": "featured-collection",
+    "product_carousel": {
+      "type": "product-carousel",
       "settings": {
         "title": "New Arrivals",
         "collection": "",
-        "products_to_show": 4,
-        "columns_desktop": 4,
-        "show_view_all": true
+        "products_to_show": 8
       }
     },
     "image_with_text": {
@@ -57,7 +55,7 @@
   },
   "order": [
     "hero",
-    "featured_collection_1",
+    "product_carousel",
     "image_with_text",
     "featured_collection_2",
     "collage",

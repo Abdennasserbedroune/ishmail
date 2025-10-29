@@ -1,0 +1,153 @@
+{{ 'section-product-carousel.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'product-carousel.js' | asset_url }}" defer></script>
+
+<div class="product-carousel section-{{ section.id }}-padding">
+  <div class="page-width">
+    {% if section.settings.title != blank %}
+      <div class="section-header">
+        <h2 class="section-header__title">{{ section.settings.title | escape }}</h2>
+      </div>
+    {% endif %}
+
+    <div class="product-carousel__wrapper">
+      <button class="product-carousel__nav product-carousel__nav--prev" aria-label="Previous products">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <polyline points="15 18 9 12 15 6"></polyline>
+        </svg>
+      </button>
+
+      <div class="product-carousel__container">
+        <div class="product-carousel__track">
+          {% if section.settings.collection != blank %}
+            {% assign collection = collections[section.settings.collection] %}
+            {% for product in collection.products limit: section.settings.products_to_show %}
+              <div class="product-carousel__item">
+                <div class="product-carousel-card">
+                  <a href="{{ product.url }}" class="product-carousel-card__link">
+                    <div class="product-carousel-card__image-wrapper">
+                      {% if product.media.size > 0 %}
+                        <img
+                          src="{{ product.media[0] | image_url: width: 800 }}"
+                          srcset="
+                            {{ product.media[0] | image_url: width: 400 }} 400w,
+                            {{ product.media[0] | image_url: width: 800 }} 800w
+                          "
+                          sizes="(min-width: 990px) 25vw, (min-width: 750px) 33vw, 80vw"
+                          alt="{{ product.media[0].alt | escape }}"
+                          loading="lazy"
+                          class="product-carousel-card__image product-carousel-card__image--primary"
+                        >
+                        
+                        {% if product.media.size > 1 %}
+                          <img
+                            src="{{ product.media[1] | image_url: width: 800 }}"
+                            srcset="
+                              {{ product.media[1] | image_url: width: 400 }} 400w,
+                              {{ product.media[1] | image_url: width: 800 }} 800w
+                            "
+                            sizes="(min-width: 990px) 25vw, (min-width: 750px) 33vw, 80vw"
+                            alt="{{ product.media[1].alt | escape }}"
+                            loading="lazy"
+                            class="product-carousel-card__image product-carousel-card__image--secondary"
+                          >
+                        {% endif %}
+                      {% else %}
+                        {{ 'product-1' | placeholder_svg_tag: 'product-carousel-card__image placeholder-svg' }}
+                      {% endif %}
+
+                      {% if product.compare_at_price > product.price %}
+                        <span class="product-carousel-card__badge badge badge--sale">{{ 'products.product.on_sale' | t }}</span>
+                      {% endif %}
+
+                      {% unless product.available %}
+                        <span class="product-carousel-card__badge badge badge--sold-out">{{ 'products.product.sold_out' | t }}</span>
+                      {% endunless %}
+                    </div>
+
+                    <div class="product-carousel-card__info">
+                      <h3 class="product-carousel-card__title">{{ product.title | escape }}</h3>
+                      <div class="product-carousel-card__price">
+                        {% render 'price', product: product, price_class: 'product-carousel-card__price-text' %}
+                      </div>
+                    </div>
+                  </a>
+
+                  {% if product.available %}
+                    <button 
+                      class="product-carousel-card__add-to-cart"
+                      data-product-id="{{ product.variants.first.id }}"
+                      aria-label="Add {{ product.title | escape }} to cart"
+                    >
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+                        <line x1="3" y1="6" x2="21" y2="6"></line>
+                        <path d="M16 10a4 4 0 0 1-8 0"></path>
+                      </svg>
+                    </button>
+                  {% endif %}
+                </div>
+              </div>
+            {% endfor %}
+          {% else %}
+            {% comment %} Placeholder products for when no collection is selected {% endcomment %}
+            {% for i in (1..section.settings.products_to_show) %}
+              <div class="product-carousel__item">
+                <div class="product-carousel-card">
+                  <div class="product-carousel-card__image-wrapper">
+                    {{ 'product-1' | placeholder_svg_tag: 'product-carousel-card__image placeholder-svg' }}
+                  </div>
+                  <div class="product-carousel-card__info">
+                    <h3 class="product-carousel-card__title">Product {{ i }}</h3>
+                    <div class="product-carousel-card__price">
+                      <span class="product-carousel-card__price-text">$0.00</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            {% endfor %}
+          {% endif %}
+        </div>
+      </div>
+
+      <button class="product-carousel__nav product-carousel__nav--next" aria-label="Next products">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <polyline points="9 18 15 12 9 6"></polyline>
+        </svg>
+      </button>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Product Carousel",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "default": "Featured Products",
+      "label": "Heading"
+    },
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Collection"
+    },
+    {
+      "type": "range",
+      "id": "products_to_show",
+      "min": 4,
+      "max": 20,
+      "step": 1,
+      "default": 8,
+      "label": "Maximum products to show"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Product Carousel"
+    }
+  ]
+}
+{% endschema %}
