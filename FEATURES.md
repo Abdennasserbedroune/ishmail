@@ -43,7 +43,7 @@
 - [x] `main-list-collections` - Collections grid
 - [x] `product-recommendations` - Related products
 
-### Snippets (20 total)
+### Snippets (21 total)
 - [x] `product-card` - Product grid item
 - [x] `price` - Price display with sale pricing
 - [x] `variant-picker` - Size/color variant selection
@@ -56,6 +56,7 @@
 - [x] `social-icons` - Social media links
 - [x] `payment-icons` - Payment method icons
 - [x] `share-button` - Social sharing
+- [x] `language-switcher` - Language selection dropdown
 - [x] `icon-hamburger` - Menu icon
 - [x] `icon-close` - Close icon
 - [x] `icon-search` - Search icon
@@ -110,6 +111,8 @@
 - [x] Sticky header option
 - [x] Mobile navigation drawer
 - [x] Mega menu support (2-level navigation)
+- [x] Language switcher (English/French)
+- [x] Automatic language translation
 - [x] Search functionality
 - [x] Account link
 - [x] Cart icon with counter
@@ -182,6 +185,7 @@
 
 ### Internationalization
 - [x] English locale file (en.default.json)
+- [x] French locale file (fr.json)
 - [x] Translation-ready structure
 - [x] Liquid translation tags
 - [x] Locale-aware URLs
@@ -209,11 +213,11 @@
 - **Total Files**: 80+
 - **Liquid Templates**: 11
 - **Sections**: 20
-- **Snippets**: 20
-- **CSS Files**: 15
+- **Snippets**: 21
+- **CSS Files**: 16
 - **JavaScript Files**: 6
 - **Configuration Files**: 2
-- **Locale Files**: 1
+- **Locale Files**: 2
 
 ## Browser Compatibility
 - ✅ Chrome (latest)

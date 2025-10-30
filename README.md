@@ -12,7 +12,7 @@ A modern, production-ready Shopify Online Store 2.0 theme designed for clothing 
 - **Collection Filtering**: Shopify storefront filters for size, color, price, and availability
 - **Cart Drawer**: AJAX-powered cart drawer with quantity updates
 - **SEO Ready**: Clean URLs, meta tags, JSON-LD structured data, Open Graph/Twitter cards
-- **Internationalization**: Base English locale with structure for additional locales
+- **Internationalization**: English and French locales with built-in language switcher
 
 ## Theme Structure
 
@@ -131,7 +131,7 @@ Add social media links in **Theme settings > Social media**
 
 ### Sections
 
-- `header` - Global header with navigation
+- `header` - Global header with navigation and language switcher
 - `footer` - Global footer with newsletter
 - `announcement-bar` - Promotional banner
 - `hero` - Hero banner with image and CTA
@@ -140,6 +140,19 @@ Add social media links in **Theme settings > Social media**
 - `newsletter` - Email signup
 - `collage` - Category showcase
 - `product-recommendations` - Related products
+
+### Languages
+
+The theme supports multiple languages:
+- **English** (default)
+- **French**
+
+The language switcher is located in the header (desktop) and mobile menu. When users select a language, the entire store interface automatically translates to the selected language. To add additional languages:
+
+1. Create a new locale file in `/locales/` (e.g., `de.json` for German)
+2. Copy the structure from `en.default.json` or `fr.json`
+3. Translate all strings while maintaining the same JSON structure
+4. The language will automatically appear in the switcher dropdown
 
 ## Customization
 

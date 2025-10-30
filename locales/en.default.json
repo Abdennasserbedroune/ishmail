@@ -41,6 +41,10 @@
     },
     "breadcrumbs": {
       "home": "Home"
+    },
+    "language": {
+      "label": "Language",
+      "submit": "Update language"
     }
   },
   "newsletter": {
