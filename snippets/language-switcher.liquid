@@ -1,37 +1,32 @@
-{%- assign select_id = id | default: 'LanguageSwitcher' -%}
+{%- assign switcher_id = id | default: 'LanguageSwitcher' -%}
 {%- assign wrapper_class = class | default: 'language-switcher' -%}
 
 {%- if localization.available_languages.size > 1 -%}
-  <div class="{{ wrapper_class }}">
+  <div class="{{ wrapper_class }}" data-language-switcher>
     {%- form 'localization', class: 'language-switcher__form' -%}
-      <label class="visually-hidden" for="{{ select_id }}">
+      <span class="visually-hidden" id="{{ switcher_id }}-label">
         {{ 'general.language.label' | t }}
-      </label>
+      </span>
 
-      <div class="language-switcher__select-wrapper">
-        <select
-          id="{{ select_id }}"
-          class="language-switcher__select"
-          name="locale_code"
-          aria-label="{{ 'general.language.label' | t }}"
-          onchange="this.form.submit()"
-        >
-          {%- for language in localization.available_languages -%}
-            <option value="{{ language.iso_code }}" {%- if language.iso_code == localization.language.iso_code -%}selected{% endif %}>
-              {{ language.endonym_name }}
-            </option>
-          {%- endfor -%}
-        </select>
-        <span class="language-switcher__chevron" aria-hidden="true">
-          {% render 'icon-chevron' %}
-        </span>
+      <div
+        class="language-switcher__options"
+        role="group"
+        aria-labelledby="{{ switcher_id }}-label"
+      >
+        {%- for language in localization.available_languages -%}
+          {%- assign is_active = language.iso_code == localization.language.iso_code -%}
+          <button
+            type="submit"
+            name="locale_code"
+            value="{{ language.iso_code }}"
+            class="language-switcher__option{% if is_active %} language-switcher__option--active{% endif %}"
+            aria-pressed="{% if is_active %}true{% else %}false{% endif %}"
+            {% if is_active %}aria-current="true"{% endif %}
+          >
+            {{ language.iso_code | split: '-' | first | upcase }}
+          </button>
+        {%- endfor -%}
       </div>
-
-      <noscript>
-        <button type="submit" class="language-switcher__submit">
-          {{ 'general.language.submit' | t }}
-        </button>
-      </noscript>
     {%- endform -%}
   </div>
 {%- endif -%}
