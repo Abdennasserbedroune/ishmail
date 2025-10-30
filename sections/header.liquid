@@ -9,6 +9,8 @@
 <noscript>{{ 'component-header.css' | asset_url | stylesheet_tag }}</noscript>
 <link rel="stylesheet" href="{{ 'component-language-switcher.css' | asset_url }}" media="print" onload="this.media='all'">
 <noscript>{{ 'component-language-switcher.css' | asset_url | stylesheet_tag }}</noscript>
+<link rel="stylesheet" href="{{ 'component-theme-toggle.css' | asset_url }}" media="print" onload="this.media='all'">
+<noscript>{{ 'component-theme-toggle.css' | asset_url | stylesheet_tag }}</noscript>
 <script src="{{ 'component-language-switcher.js' | asset_url }}" defer="defer"></script>
 
 <header class="header{% if header_transparent %} header--transparent{% endif %}{% if section.settings.enable_sticky_header %} header--sticky{% endif %}" data-header>
@@ -59,6 +61,7 @@
 
       <div class="header__icons">
         {% render 'language-switcher', id: 'HeaderLanguageDesktop', class: 'language-switcher language-switcher--desktop' %}
+        {% render 'theme-toggle', class: 'header__icon' %}
 
         <a href="{{ routes.search_url }}" class="header__icon" aria-label="{{ 'general.search.search' | t }}">
           {% render 'icon-search' %}
@@ -86,6 +89,7 @@
     <nav class="mobile-menu__nav">
       <div class="mobile-menu__language">
         {% render 'language-switcher', id: 'HeaderLanguageMobile', class: 'language-switcher language-switcher--mobile' %}
+        {% render 'theme-toggle' %}
       </div>
 
       <ul class="mobile-menu__list" role="list">

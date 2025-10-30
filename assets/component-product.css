@@ -82,7 +82,7 @@
   padding: 0.75rem 1.25rem;
   border: 1px solid var(--color-border, #E0E0E0);
   border-radius: var(--border-radius, 0);
-  background-color: #ffffff;
+  background-color: var(--color-surface, #ffffff);
   cursor: pointer;
   transition: all 0.2s;
   font-size: 0.875rem;
@@ -92,7 +92,7 @@
 .variant-picker__input:checked + .variant-picker__button {
   border-color: var(--color-text, #000000);
   background-color: var(--color-text, #000000);
-  color: #ffffff;
+  color: var(--color-background, #ffffff);
 }
 
 .variant-picker__input:disabled + .variant-picker__button {
@@ -138,7 +138,7 @@
 }
 
 .quantity-selector__button:hover {
-  background-color: #fafafa;
+  background-color: rgba(0, 0, 0, 0.05);
 }
 
 .quantity-selector__input {
