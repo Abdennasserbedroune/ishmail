@@ -35,7 +35,7 @@
 }
 
 .product-carousel__item {
-  flex: 0 0 calc(25% - 1.5rem);
+  flex: 0 0 calc(33.333% - 1.33rem);
   min-width: 0;
 }
 
@@ -183,7 +183,7 @@
 
 @media screen and (max-width: 989px) {
   .product-carousel__item {
-    flex: 0 0 calc(33.333% - 1.33rem);
+    flex: 0 0 calc(50% - 1rem);
   }
   
   .product-carousel__nav {
@@ -210,7 +210,7 @@
   }
   
   .product-carousel__item {
-    flex: 0 0 calc(50% - 0.5rem);
+    flex: 0 0 calc(60% - 0.5rem);
   }
   
   .product-carousel__nav {

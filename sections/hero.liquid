@@ -2,24 +2,6 @@
 
 <div class="hero hero--{{ section.settings.height }}" style="{% if section.settings.image %}background-image: url({{ section.settings.image | image_url: width: 1920 }});{% endif %}">
   <div class="hero__overlay" style="opacity: {{ section.settings.overlay_opacity | divided_by: 100.0 }};"></div>
-  
-  <div class="hero__content page-width">
-    <div class="hero__text-wrapper hero__text--{{ section.settings.text_alignment }}">
-      {% if section.settings.heading != blank %}
-        <h1 class="hero__heading">{{ section.settings.heading | escape }}</h1>
-      {% endif %}
-      
-      {% if section.settings.subheading != blank %}
-        <p class="hero__subheading">{{ section.settings.subheading | escape }}</p>
-      {% endif %}
-      
-      {% if section.settings.button_text != blank %}
-        <a href="{{ section.settings.button_link }}" class="button button--primary">
-          {{ section.settings.button_text | escape }}
-        </a>
-      {% endif %}
-    </div>
-  </div>
 </div>
 
 {% schema %}
