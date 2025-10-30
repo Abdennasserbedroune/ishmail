@@ -1,0 +1,59 @@
+{
+  "sections": {
+    "main": {
+      "type": "page-manifesto",
+      "settings": {
+        "kicker": "Manifesto",
+        "heading": "We create garments for enduring wardrobes",
+        "intro": "<p>Our manifesto is a living document. It guides how we design, craft, and show up for the community that wears Ishmail. Explore the pillars that shape everything we do.</p>"
+      },
+      "blocks": {
+        "block_1": {
+          "type": "story",
+          "settings": {
+            "kicker": "Pillar 01",
+            "heading": "Honoring the process",
+            "body": "<p>We obsess over every stitch, cut, and finish. Each collection is developed with rigorous attention to detail so that it feels timeless today and relevant tomorrow.</p><p>Our design process is rooted in research, experimentation, and honest critique. We work with artisans who share our values and bring deep expertise to every stage of production.</p>",
+            "image_position": "left"
+          }
+        },
+        "block_2": {
+          "type": "story",
+          "settings": {
+            "kicker": "Pillar 02",
+            "heading": "Quality over quantity",
+            "body": "<p>We create fewer pieces with greater intention. Every garment is made to last, designed to transcend seasons, and built to become a foundational part of your wardrobe.</p><p>Rather than chasing trends, we focus on fit, fabric, and construction. The result is clothing that improves with age and earns its place in your daily life.</p>",
+            "image_position": "right"
+          }
+        },
+        "block_3": {
+          "type": "story",
+          "settings": {
+            "kicker": "Pillar 03",
+            "heading": "Thoughtful sourcing",
+            "body": "<p>We source materials responsibly and work with suppliers who prioritize ethical practices. From organic cotton to recycled fibers, every choice is made with care for people and the planet.</p><p>Transparency matters. We believe you deserve to know where your clothing comes from, who made it, and what it's made of.</p>",
+            "image_position": "left"
+          }
+        },
+        "block_4": {
+          "type": "story",
+          "settings": {
+            "kicker": "Pillar 04",
+            "heading": "Building community",
+            "body": "<p>Ishmail is more than a brand—it's a community of people who value quality, authenticity, and thoughtful design. We create spaces for connection, conversation, and shared appreciation for craft.</p><p>Our customers aren't just customers. They're collaborators, critics, and champions who help us grow and stay true to our mission.</p>",
+            "image_position": "right"
+          }
+        }
+      },
+      "block_order": [
+        "block_1",
+        "block_2",
+        "block_3",
+        "block_4"
+      ]
+    }
+  },
+  "order": [
+    "main"
+  ]
+}
