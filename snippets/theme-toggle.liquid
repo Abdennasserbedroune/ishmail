@@ -1,0 +1,13 @@
+{% assign toggle_classes = 'theme-toggle' %}
+{% if class != blank %}
+  {% assign toggle_classes = toggle_classes | append: ' ' | append: class %}
+{% endif %}
+
+<button type="button" class="{{ toggle_classes }}" aria-label="Toggle color theme" aria-pressed="false" data-theme-toggle>
+  <span class="theme-toggle__icon theme-toggle__sun" aria-hidden="true">
+    {% render 'icon-sun' %}
+  </span>
+  <span class="theme-toggle__icon theme-toggle__moon" aria-hidden="true">
+    {% render 'icon-moon' %}
+  </span>
+</button>

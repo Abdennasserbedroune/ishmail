@@ -28,7 +28,7 @@
   width: 100%;
   max-width: 400px;
   height: 100%;
-  background-color: #ffffff;
+  background-color: var(--color-surface, #ffffff);
   transition: right 0.3s;
   z-index: 301;
   display: flex;
@@ -119,7 +119,7 @@
 }
 
 .quantity-button:hover {
-  background-color: #fafafa;
+  background-color: rgba(0, 0, 0, 0.05);
 }
 
 .cart-drawer__item-quantity input {

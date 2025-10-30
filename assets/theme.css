@@ -108,7 +108,7 @@ a:focus-visible {
 
 .button--primary {
   background-color: var(--color-text, #000000);
-  color: #ffffff;
+  color: var(--color-background, #ffffff);
   border-color: var(--color-text, #000000);
 }
 
@@ -126,7 +126,7 @@ a:focus-visible {
 
 .button--secondary:hover {
   background-color: var(--color-text, #000000);
-  color: #ffffff;
+  color: var(--color-background, #ffffff);
   opacity: 1;
 }
 
@@ -153,7 +153,7 @@ select {
   font-weight: var(--font-body-weight, 400);
   border: 1px solid var(--color-border, #E0E0E0);
   border-radius: var(--border-radius, 0);
-  background-color: #ffffff;
+  background-color: var(--color-surface, #ffffff);
   transition: border-color var(--transition-duration, 0.2s);
 }
 
