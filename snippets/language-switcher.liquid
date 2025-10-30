@@ -14,14 +14,13 @@
         aria-labelledby="{{ switcher_id }}-label"
       >
         {%- for language in localization.available_languages -%}
-          {%- assign is_active = language.iso_code == localization.language.iso_code -%}
           <button
             type="submit"
             name="locale_code"
             value="{{ language.iso_code }}"
-            class="language-switcher__option{% if is_active %} language-switcher__option--active{% endif %}"
-            aria-pressed="{% if is_active %}true{% else %}false{% endif %}"
-            {% if is_active %}aria-current="true"{% endif %}
+            class="language-switcher__option{% if language.iso_code == localization.language.iso_code %} language-switcher__option--active{% endif %}"
+            aria-pressed="{% if language.iso_code == localization.language.iso_code %}true{% else %}false{% endif %}"
+            {% if language.iso_code == localization.language.iso_code %}aria-current="true"{% endif %}
           >
             {{ language.iso_code | split: '-' | first | upcase }}
           </button>
