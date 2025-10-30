@@ -2,6 +2,10 @@
   padding: 6rem 0;
 }
 
+.collections-image-list.section-template--24919193059657__collections_image_list-padding .page-width {
+  max-width: none;
+}
+
 .collections-image-list .section-header {
   text-align: center;
   margin-bottom: 4rem;
