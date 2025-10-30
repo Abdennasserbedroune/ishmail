@@ -25,51 +25,30 @@
     {% if section.blocks.size > 0 %}
       <div class="manifesto__blocks">
         {% for block in section.blocks %}
-          {%- assign has_image = block.settings.image != blank -%}
-          <article
-            class="manifesto-block manifesto-block--{{ block.settings.image_position }}"
-            {{ block.shopify_attributes }}
-          >
-            <div class="manifesto-block__media">
-              <div class="manifesto-block__image">
-                {% if has_image %}
-                  <img
-                    src="{{ block.settings.image | image_url: width: 1200 }}"
-                    srcset="
-                      {{ block.settings.image | image_url: width: 600 }} 600w,
-                      {{ block.settings.image | image_url: width: 800 }} 800w,
-                      {{ block.settings.image | image_url: width: 1000 }} 1000w,
-                      {{ block.settings.image | image_url: width: 1200 }} 1200w,
-                      {{ block.settings.image | image_url: width: 1600 }} 1600w
-                    "
-                    sizes="(min-width: 990px) 50vw, 100vw"
-                    alt="{{ block.settings.image.alt | default: block.settings.heading | escape }}"
-                    loading="lazy"
-                    width="{{ block.settings.image.width }}"
-                    height="{{ block.settings.image.height }}"
-                  >
-                {% else %}
-                  {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
-                {% endif %}
-              </div>
-            </div>
+          {%- liquid
+            assign loop_index = forloop.index
+            assign alternates = section.settings.alternating_layout
+            assign computed_position = block.settings.image_position
 
-            <div class="manifesto-block__content">
-              {% if block.settings.kicker != blank %}
-                <p class="manifesto-block__label">{{ block.settings.kicker | escape }}</p>
-              {% endif %}
-
-              {% if block.settings.heading != blank %}
-                <h2 class="manifesto-block__heading">{{ block.settings.heading | escape }}</h2>
-              {% endif %}
-
-              {% if block.settings.body != blank %}
-                <div class="manifesto-block__body rte">
-                  {{ block.settings.body }}
-                </div>
-              {% endif %}
-            </div>
-          </article>
+            if alternates
+              assign is_even = loop_index | modulo: 2
+              if is_even == 0
+                assign computed_position = 'right'
+              else
+                assign computed_position = 'left'
+              endif
+            endif
+          -%}
+          {% render 'manifesto-block',
+            orientation: computed_position,
+            kicker: block.settings.kicker,
+            heading: block.settings.heading,
+            body: block.settings.body,
+            image: block.settings.image,
+            image_alt: block.settings.image_alt,
+            fallback_image: block.settings.fallback_image,
+            shopify_attributes: block.shopify_attributes
+          %}
         {% endfor %}
       </div>
     {% endif %}
@@ -97,6 +76,13 @@
       "id": "intro",
       "label": "Intro",
       "default": "<p>Our manifesto is a living document. It guides how we design, craft, and show up for the community that wears Ishmail. Explore the pillars that shape everything we do.</p>"
+    },
+    {
+      "type": "checkbox",
+      "id": "alternating_layout",
+      "label": "Alternating layout",
+      "info": "Automatically alternate image position (left/right) for each block",
+      "default": true
     }
   ],
   "blocks": [
@@ -127,9 +113,30 @@
           "label": "Image"
         },
         {
+          "type": "text",
+          "id": "image_alt",
+          "label": "Image alt text",
+          "info": "Describe the image for accessibility. Defaults to the block heading."
+        },
+        {
+          "type": "select",
+          "id": "fallback_image",
+          "label": "Fallback theme image",
+          "info": "Used when no image is selected or while previewing the theme.",
+          "default": "",
+          "options": [
+            { "value": "", "label": "None" },
+            { "value": "manifesto-block-1.svg", "label": "Studio draping illustration" },
+            { "value": "manifesto-block-2.svg", "label": "Textile study graphic" },
+            { "value": "manifesto-block-3.svg", "label": "Loom details graphic" },
+            { "value": "manifesto-block-4.svg", "label": "Community gathering graphic" }
+          ]
+        },
+        {
           "type": "select",
           "id": "image_position",
           "label": "Image position",
+          "info": "Only applies when the alternating layout setting is turned off.",
           "options": [
             { "value": "left", "label": "Left" },
             { "value": "right", "label": "Right" }

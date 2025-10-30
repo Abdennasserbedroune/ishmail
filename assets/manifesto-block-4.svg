@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1000" width="800" height="1000">
+  <rect width="800" height="1000" fill="#f4f4f4"/>
+  <g opacity="0.15" fill="none" stroke="#000" stroke-width="1.2">
+    <circle cx="280" cy="360" r="90"/>
+    <circle cx="520" cy="360" r="90"/>
+    <circle cx="400" cy="520" r="110"/>
+    <line x1="280" y1="470" x2="400" y2="630"/>
+    <line x1="520" y1="470" x2="400" y2="630"/>
+    <line x1="280" y1="270" x2="520" y2="270" stroke-linecap="round"/>
+    <line x1="240" y1="320" x2="560" y2="320" stroke-linecap="round"/>
+    <line x1="220" y1="360" x2="580" y2="360" stroke-linecap="round"/>
+    <path d="M220,700 Q400,660 580,700" stroke-linecap="round"/>
+    <path d="M240,740 Q400,700 560,740" stroke-linecap="round"/>
+    <path d="M260,780 Q400,740 540,780" stroke-linecap="round"/>
+  </g>
+  <text x="400" y="860" font-family="Arial, sans-serif" font-size="14" font-weight="300" fill="#999" text-anchor="middle" letter-spacing="2">COMMUNITY MOMENT</text>
+</svg>

@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1000" width="800" height="1000">
+  <rect width="800" height="1000" fill="#f5f5f5"/>
+  <g opacity="0.15" fill="none" stroke="#000000" stroke-width="1.5">
+    <path d="M200,300 Q250,250 300,300 T400,300" stroke-linecap="round"/>
+    <path d="M200,350 Q250,300 300,350 T400,350" stroke-linecap="round"/>
+    <path d="M200,400 Q250,350 300,400 T400,400" stroke-linecap="round"/>
+    <ellipse cx="250" cy="520" rx="15" ry="20"/>
+    <circle cx="300" cy="520" r="8"/>
+    <line x1="230" y1="550" x2="280" y2="600" stroke-linecap="round"/>
+    <line x1="280" y1="550" x2="330" y2="600" stroke-linecap="round"/>
+    <path d="M450,350 L550,350 L550,550 L450,550 Z" fill="none"/>
+    <line x1="470" y1="370" x2="530" y2="370"/>
+    <line x1="470" y1="390" x2="530" y2="390"/>
+    <line x1="470" y1="410" x2="530" y2="410"/>
+    <path d="M220,680 Q400,650 580,680" stroke-dasharray="5,5"/>
+  </g>
+  <text x="400" y="860" font-family="Arial, sans-serif" font-size="14" font-weight="300" fill="#999" text-anchor="middle" letter-spacing="2">STUDIO DRAPING</text>
+</svg>
