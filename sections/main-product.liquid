@@ -54,9 +54,76 @@
             </div>
 
           {% when 'description' %}
-            {% if product.description != blank %}
-              <div class="product__description rte" {{ block.shopify_attributes }}>
-                {{ product.description }}
+            {% liquid
+              assign description_content = product.description
+              assign composition = product.metafields.custom.composition
+              assign care_instructions = product.metafields.custom.care_instructions
+              assign delivery_returns = product.metafields.custom.livraison_et_retours
+              assign made_in = product.metafields.custom.made_in
+              assign has_accordion_content = false
+
+              if description_content != blank
+                assign has_accordion_content = true
+              elsif composition != blank or care_instructions != blank or delivery_returns != blank or made_in != blank
+                assign has_accordion_content = true
+              endif
+            %}
+            {% if has_accordion_content %}
+              <div class="product-accordion" {{ block.shopify_attributes }}>
+                {% if description_content != blank %}
+                  <details class="product-accordion__item" open>
+                    <summary class="product-accordion__summary">
+                      <span>Description</span>
+                    </summary>
+                    <div class="product-accordion__content rte">
+                      {{ description_content }}
+                    </div>
+                  </details>
+                {% endif %}
+
+                {% if composition != blank %}
+                  <details class="product-accordion__item">
+                    <summary class="product-accordion__summary">
+                      <span>Composition</span>
+                    </summary>
+                    <div class="product-accordion__content rte">
+                      {{ composition | metafield_text | default: composition.value | default: composition }}
+                    </div>
+                  </details>
+                {% endif %}
+
+                {% if care_instructions != blank %}
+                  <details class="product-accordion__item">
+                    <summary class="product-accordion__summary">
+                      <span>Care instructions</span>
+                    </summary>
+                    <div class="product-accordion__content rte">
+                      {{ care_instructions | metafield_text | default: care_instructions.value | default: care_instructions }}
+                    </div>
+                  </details>
+                {% endif %}
+
+                {% if delivery_returns != blank %}
+                  <details class="product-accordion__item">
+                    <summary class="product-accordion__summary">
+                      <span>Livraison et retours</span>
+                    </summary>
+                    <div class="product-accordion__content rte">
+                      {{ delivery_returns | metafield_text | default: delivery_returns.value | default: delivery_returns }}
+                    </div>
+                  </details>
+                {% endif %}
+
+                {% if made_in != blank %}
+                  <details class="product-accordion__item">
+                    <summary class="product-accordion__summary">
+                      <span>Made in</span>
+                    </summary>
+                    <div class="product-accordion__content rte">
+                      {{ made_in | metafield_text | default: made_in.value | default: made_in }}
+                    </div>
+                  </details>
+                {% endif %}
               </div>
             {% endif %}
 
