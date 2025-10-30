@@ -1,5 +1,7 @@
 {%- assign switcher_id = id | default: 'LanguageSwitcher' -%}
 {%- assign wrapper_class = class | default: 'language-switcher' -%}
+{%- assign current_language_name = localization.language.endonym_name -%}
+{%- assign current_language_iso = localization.language.iso_code -%}
 
 {%- if localization.available_languages.size > 1 -%}
   <div class="{{ wrapper_class }}" data-language-switcher>
@@ -8,24 +10,51 @@
         {{ 'general.language.label' | t }}
       </span>
 
-      <div
-        class="language-switcher__options"
-        role="group"
+      <button
+        type="button"
+        class="language-switcher__toggle"
+        aria-haspopup="listbox"
+        aria-expanded="false"
+        aria-labelledby="{{ switcher_id }}-label {{ switcher_id }}-current"
+        aria-controls="{{ switcher_id }}-menu"
+        data-language-toggle
+      >
+        <span
+          class="language-switcher__toggle-text"
+          id="{{ switcher_id }}-current"
+          lang="{{ current_language_iso | replace: '_', '-' }}"
+        >
+          {{ current_language_name | escape }}
+        </span>
+        <span class="language-switcher__toggle-icon" aria-hidden="true">
+          {% render 'icon-chevron' %}
+        </span>
+      </button>
+
+      <ul
+        class="language-switcher__menu"
+        id="{{ switcher_id }}-menu"
+        role="listbox"
         aria-labelledby="{{ switcher_id }}-label"
+        data-language-menu
       >
         {%- for language in localization.available_languages -%}
-          <button
-            type="submit"
-            name="locale_code"
-            value="{{ language.iso_code }}"
-            class="language-switcher__option{% if language.iso_code == localization.language.iso_code %} language-switcher__option--active{% endif %}"
-            aria-pressed="{% if language.iso_code == localization.language.iso_code %}true{% else %}false{% endif %}"
-            {% if language.iso_code == localization.language.iso_code %}aria-current="true"{% endif %}
-          >
-            {{ language.iso_code | split: '-' | first | upcase }}
-          </button>
+          <li class="language-switcher__menu-item-wrapper">
+            <button
+              type="submit"
+              name="locale_code"
+              value="{{ language.iso_code }}"
+              class="language-switcher__menu-item{% if language.iso_code == current_language_iso %} language-switcher__menu-item--active{% endif %}"
+              role="option"
+              lang="{{ language.iso_code | replace: '_', '-' }}"
+              data-language-option
+              {% if language.iso_code == current_language_iso %}aria-selected="true" aria-current="true"{% else %}aria-selected="false"{% endif %}
+            >
+              {{ language.endonym_name | escape }}
+            </button>
+          </li>
         {%- endfor -%}
-      </div>
+      </ul>
     {%- endform -%}
   </div>
 {%- endif -%}
