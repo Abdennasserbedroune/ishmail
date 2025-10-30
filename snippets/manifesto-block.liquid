@@ -6,7 +6,11 @@
 
   assign block_classes = 'manifesto-block manifesto-block--' | append: orientation
 
-  assign has_image = image != blank
+  assign has_image = false
+
+  if image != blank
+    assign has_image = true
+  endif
   assign fallback_asset_name = fallback_image | default: ''
   assign using_fallback = false
 
