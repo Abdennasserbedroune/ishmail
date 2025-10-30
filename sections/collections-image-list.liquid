@@ -1,0 +1,153 @@
+{{ 'section-collections-image-list.css' | asset_url | stylesheet_tag }}
+
+<div class="collections-image-list section-{{ section.id }}-padding">
+  <div class="page-width">
+    {% if section.settings.title != blank %}
+      <div class="section-header">
+        <h2 class="section-header__title">{{ section.settings.title | escape }}</h2>
+      </div>
+    {% endif %}
+
+    {% if section.blocks.size > 0 %}
+      <div class="collections-image-list__grid collections-image-list__grid--{{ section.settings.columns_desktop }}-col-desktop collections-image-list__grid--{{ section.settings.columns_mobile }}-col-mobile">
+        {% for block in section.blocks limit: section.settings.collections_to_show %}
+          {% assign collection = null %}
+          {% if block.settings.collection != blank %}
+            {% assign collection = collections[block.settings.collection] %}
+          {% endif %}
+          <div class="collections-image-list__item" {{ block.shopify_attributes }}>
+            {% if collection %}
+              <a href="{{ collection.url }}" class="collections-image-list__link">
+                {% if collection.featured_image %}
+                  <img
+                    src="{{ collection.featured_image | image_url: width: 800 }}"
+                    srcset="{{ collection.featured_image | image_url: width: 400 }} 400w,
+                            {{ collection.featured_image | image_url: width: 600 }} 600w,
+                            {{ collection.featured_image | image_url: width: 800 }} 800w"
+                    sizes="(min-width: 750px) calc((100vw - 10rem) / {{ section.settings.columns_desktop }}), calc((100vw - 3rem) / {{ section.settings.columns_mobile }})"
+                    alt="{{ collection.featured_image.alt | default: collection.title | escape }}"
+                    loading="lazy"
+                    width="{{ collection.featured_image.width }}"
+                    height="{{ collection.featured_image.height }}"
+                    class="collections-image-list__image"
+                  >
+                {% else %}
+                  {{ 'collection-1' | placeholder_svg_tag: 'placeholder-svg' }}
+                {% endif %}
+                <div class="collections-image-list__overlay">
+                  <h3 class="collections-image-list__title">{{ collection.title | escape }}</h3>
+                  {% if section.settings.show_product_count %}
+                    {% assign singular_label = 'sections.collections_image_list.product' | t %}
+                    {% assign plural_label = 'sections.collections_image_list.products' | t %}
+                    <p class="collections-image-list__count">
+                      {{ collection.products_count }} {{ collection.products_count | pluralize: singular_label, plural_label }}
+                    </p>
+                  {% endif %}
+                </div>
+              </a>
+            {% else %}
+              <div class="collections-image-list__placeholder">
+                {{ 'collection-1' | placeholder_svg_tag: 'placeholder-svg' }}
+                <div class="collections-image-list__overlay">
+                  <h3 class="collections-image-list__title">{{ 'sections.collections_image_list.collection_placeholder' | t }}</h3>
+                </div>
+              </div>
+            {% endif %}
+          </div>
+        {% endfor %}
+      </div>
+    {% else %}
+      <div class="collections-image-list__empty">
+        <p>{{ 'sections.collections_image_list.no_collections' | t }}</p>
+      </div>
+    {% endif %}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Collections image list",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "default": "Shop Collections",
+      "label": "Heading"
+    },
+    {
+      "type": "range",
+      "id": "collections_to_show",
+      "min": 1,
+      "max": 12,
+      "step": 1,
+      "default": 4,
+      "label": "Maximum collections to show"
+    },
+    {
+      "type": "range",
+      "id": "columns_desktop",
+      "min": 2,
+      "max": 5,
+      "step": 1,
+      "default": 4,
+      "label": "Number of columns on desktop"
+    },
+    {
+      "type": "select",
+      "id": "columns_mobile",
+      "options": [
+        {
+          "value": "1",
+          "label": "1 column"
+        },
+        {
+          "value": "2",
+          "label": "2 columns"
+        }
+      ],
+      "default": "2",
+      "label": "Number of columns on mobile"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_product_count",
+      "default": false,
+      "label": "Show product count"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "collection",
+      "name": "Collection",
+      "settings": [
+        {
+          "type": "collection",
+          "id": "collection",
+          "label": "Collection"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Collections image list",
+      "blocks": [
+        {
+          "type": "collection"
+        },
+        {
+          "type": "collection"
+        },
+        {
+          "type": "collection"
+        },
+        {
+          "type": "collection"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 12
+}
+{% endschema %}

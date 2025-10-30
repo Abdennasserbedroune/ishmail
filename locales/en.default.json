@@ -117,6 +117,12 @@
       "view_all": "View all",
       "no_collection": "Please select a collection in theme settings"
     },
+    "collections_image_list": {
+      "product": "product",
+      "products": "products",
+      "collection_placeholder": "Collection",
+      "no_collections": "Add collections to this section to display them here"
+    },
     "announcement": {
       "announcement": "Announcement"
     },
