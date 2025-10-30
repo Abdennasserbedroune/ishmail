@@ -27,12 +27,12 @@
         {% for block in section.blocks %}
           {%- assign has_image = block.settings.image != blank -%}
           <article
-            class="manifesto-block manifesto-block--{{ block.settings.image_position }}{% unless has_image %} manifesto-block--text-only{% endunless %}"
+            class="manifesto-block manifesto-block--{{ block.settings.image_position }}"
             {{ block.shopify_attributes }}
           >
-            {% if has_image %}
-              <div class="manifesto-block__media">
-                <div class="manifesto-block__image">
+            <div class="manifesto-block__media">
+              <div class="manifesto-block__image">
+                {% if has_image %}
                   <img
                     src="{{ block.settings.image | image_url: width: 1200 }}"
                     srcset="
@@ -48,9 +48,11 @@
                     width="{{ block.settings.image.width }}"
                     height="{{ block.settings.image.height }}"
                   >
-                </div>
+                {% else %}
+                  {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+                {% endif %}
               </div>
-            {% endif %}
+            </div>
 
             <div class="manifesto-block__content">
               {% if block.settings.kicker != blank %}
