@@ -69,13 +69,13 @@
         "type": "font_picker",
         "id": "type_header_font",
         "label": "Heading font",
-        "default": "assistant_n4"
+        "default": "work_sans_n5"
       },
       {
         "type": "font_picker",
         "id": "type_body_font",
         "label": "Body font",
-        "default": "assistant_n4"
+        "default": "chivo_n4"
       },
       {
         "type": "range",
