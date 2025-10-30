@@ -156,6 +156,24 @@ The language switcher is located in the header (desktop) and mobile menu. When u
 
 ## Customization
 
+### Product Metafields
+
+The theme supports collapsible accordion sections on product pages using the following custom metafields:
+
+- `custom.composition` - Product composition/materials information
+- `custom.care_instructions` - Care and washing instructions
+- `custom.livraison_et_retours` - Delivery and returns policy
+- `custom.made_in` - Manufacturing origin information
+
+To add these metafields to your products:
+
+1. Go to **Settings > Custom data > Products** in your Shopify admin
+2. Add metafield definitions with the namespace `custom` and the keys listed above
+3. Set the content type to "Multi-line text" or "Rich text"
+4. Edit your products and populate the metafield values
+
+The product description will automatically appear in a collapsible "Description" section, followed by any populated metafields.
+
 ### Adding Custom Sections
 
 1. Create a new file in `/sections/` with `.liquid` extension
