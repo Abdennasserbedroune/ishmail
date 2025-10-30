@@ -1,0 +1,146 @@
+{{ 'section-manifesto.css' | asset_url | stylesheet_tag }}
+
+<section class="manifesto section-padding" id="section-{{ section.id }}">
+  <div class="page-width">
+    {% if section.settings.kicker != blank or section.settings.heading != blank or section.settings.intro != blank %}
+      <header class="manifesto__header">
+        {% if section.settings.kicker != blank %}
+          <p class="manifesto__label">{{ section.settings.kicker | escape }}</p>
+        {% endif %}
+
+        {% if section.settings.heading != blank %}
+          <h1 class="manifesto__title">{{ section.settings.heading | escape }}</h1>
+        {% else %}
+          <h1 class="visually-hidden">{{ page.title | escape }}</h1>
+        {% endif %}
+
+        {% if section.settings.intro != blank %}
+          <div class="manifesto__intro rte">
+            {{ section.settings.intro }}
+          </div>
+        {% endif %}
+      </header>
+    {% endif %}
+
+    {% if section.blocks.size > 0 %}
+      <div class="manifesto__blocks">
+        {% for block in section.blocks %}
+          {%- assign has_image = block.settings.image != blank -%}
+          <article
+            class="manifesto-block manifesto-block--{{ block.settings.image_position }}{% unless has_image %} manifesto-block--text-only{% endunless %}"
+            {{ block.shopify_attributes }}
+          >
+            {% if has_image %}
+              <div class="manifesto-block__media">
+                <div class="manifesto-block__image">
+                  <img
+                    src="{{ block.settings.image | image_url: width: 1200 }}"
+                    srcset="
+                      {{ block.settings.image | image_url: width: 600 }} 600w,
+                      {{ block.settings.image | image_url: width: 800 }} 800w,
+                      {{ block.settings.image | image_url: width: 1000 }} 1000w,
+                      {{ block.settings.image | image_url: width: 1200 }} 1200w,
+                      {{ block.settings.image | image_url: width: 1600 }} 1600w
+                    "
+                    sizes="(min-width: 990px) 50vw, 100vw"
+                    alt="{{ block.settings.image.alt | default: block.settings.heading | escape }}"
+                    loading="lazy"
+                    width="{{ block.settings.image.width }}"
+                    height="{{ block.settings.image.height }}"
+                  >
+                </div>
+              </div>
+            {% endif %}
+
+            <div class="manifesto-block__content">
+              {% if block.settings.kicker != blank %}
+                <p class="manifesto-block__label">{{ block.settings.kicker | escape }}</p>
+              {% endif %}
+
+              {% if block.settings.heading != blank %}
+                <h2 class="manifesto-block__heading">{{ block.settings.heading | escape }}</h2>
+              {% endif %}
+
+              {% if block.settings.body != blank %}
+                <div class="manifesto-block__body rte">
+                  {{ block.settings.body }}
+                </div>
+              {% endif %}
+            </div>
+          </article>
+        {% endfor %}
+      </div>
+    {% endif %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Manifesto page",
+  "settings": [
+    {
+      "type": "text",
+      "id": "kicker",
+      "label": "Section label",
+      "default": "Manifesto"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "We create garments for enduring wardrobes"
+    },
+    {
+      "type": "richtext",
+      "id": "intro",
+      "label": "Intro",
+      "default": "<p>Our manifesto is a living document. It guides how we design, craft, and show up for the community that wears Ishmail. Explore the pillars that shape everything we do.</p>"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "story",
+      "name": "Story block",
+      "settings": [
+        {
+          "type": "text",
+          "id": "kicker",
+          "label": "Block label"
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Block heading",
+          "default": "Honoring the process"
+        },
+        {
+          "type": "richtext",
+          "id": "body",
+          "label": "Text",
+          "default": "<p>We obsess over every stitch, cut, and finish. Each collection is developed with rigorous attention to detail so that it feels timeless today and relevant tomorrow.</p>"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "select",
+          "id": "image_position",
+          "label": "Image position",
+          "options": [
+            { "value": "left", "label": "Left" },
+            { "value": "right", "label": "Right" }
+          ],
+          "default": "left"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Manifesto page"
+    }
+  ]
+}
+{% endschema %}
