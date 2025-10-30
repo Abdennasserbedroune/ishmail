@@ -1,0 +1,85 @@
+{% liquid
+  assign orientation = orientation | default: 'left'
+  if orientation != 'right'
+    assign orientation = 'left'
+  endif
+
+  assign block_classes = 'manifesto-block manifesto-block--' | append: orientation
+
+  assign has_image = image != blank
+  assign fallback_asset_name = fallback_image | default: ''
+  assign using_fallback = false
+
+  if has_image == false and fallback_asset_name != ''
+    assign using_fallback = true
+  endif
+
+  assign computed_alt = image_alt
+
+  if has_image and image.alt != blank
+    assign computed_alt = image.alt
+  elsif computed_alt == blank
+    assign computed_alt = heading
+  endif
+
+  assign width_attr = ''
+  assign height_attr = ''
+
+  if has_image
+    assign width_attr = image.width
+    assign height_attr = image.height
+  else
+    assign width_attr = 800
+    assign height_attr = 1000
+  endif
+%}
+
+<article class="{{ block_classes }}" {{ shopify_attributes }}>
+  <div class="manifesto-block__media">
+    <div class="manifesto-block__image">
+      {% if has_image %}
+        <img
+          src="{{ image | image_url: width: 1200 }}"
+          srcset="
+            {{ image | image_url: width: 600 }} 600w,
+            {{ image | image_url: width: 800 }} 800w,
+            {{ image | image_url: width: 1000 }} 1000w,
+            {{ image | image_url: width: 1200 }} 1200w,
+            {{ image | image_url: width: 1600 }} 1600w
+          "
+          sizes="(min-width: 990px) 50vw, 100vw"
+          alt="{{ computed_alt | escape }}"
+          loading="lazy"
+          width="{{ width_attr }}"
+          height="{{ height_attr }}"
+        >
+      {% elsif using_fallback %}
+        <img
+          src="{{ fallback_asset_name | asset_url }}"
+          alt="{{ computed_alt | escape }}"
+          loading="lazy"
+          width="{{ width_attr }}"
+          height="{{ height_attr }}"
+        >
+      {% else %}
+        {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+      {% endif %}
+    </div>
+  </div>
+
+  <div class="manifesto-block__content">
+    {% if kicker != blank %}
+      <p class="manifesto-block__label">{{ kicker | escape }}</p>
+    {% endif %}
+
+    {% if heading != blank %}
+      <h2 class="manifesto-block__heading">{{ heading | escape }}</h2>
+    {% endif %}
+
+    {% if body != blank %}
+      <div class="manifesto-block__body rte">
+        {{ body }}
+      </div>
+    {% endif %}
+  </div>
+</article>

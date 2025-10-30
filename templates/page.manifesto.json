@@ -5,7 +5,8 @@
       "settings": {
         "kicker": "Manifesto",
         "heading": "We create garments for enduring wardrobes",
-        "intro": "<p>Our manifesto is a living document. It guides how we design, craft, and show up for the community that wears Ishmail. Explore the pillars that shape everything we do.</p>"
+        "intro": "<p>Our manifesto is a living document. It guides how we design, craft, and show up for the community that wears Ishmail. Explore the pillars that shape everything we do.</p>",
+        "alternating_layout": true
       },
       "blocks": {
         "block_1": {
@@ -14,6 +15,8 @@
             "kicker": "Pillar 01",
             "heading": "Honoring the process",
             "body": "<p>We obsess over every stitch, cut, and finish. Each collection is developed with rigorous attention to detail so that it feels timeless today and relevant tomorrow.</p><p>Our design process is rooted in research, experimentation, and honest critique. We work with artisans who share our values and bring deep expertise to every stage of production.</p>",
+            "image_alt": "Artisan working on garment details",
+            "fallback_image": "manifesto-block-1.svg",
             "image_position": "left"
           }
         },
@@ -23,6 +26,8 @@
             "kicker": "Pillar 02",
             "heading": "Quality over quantity",
             "body": "<p>We create fewer pieces with greater intention. Every garment is made to last, designed to transcend seasons, and built to become a foundational part of your wardrobe.</p><p>Rather than chasing trends, we focus on fit, fabric, and construction. The result is clothing that improves with age and earns its place in your daily life.</p>",
+            "image_alt": "Carefully curated wardrobe essentials",
+            "fallback_image": "manifesto-block-2.svg",
             "image_position": "right"
           }
         },
@@ -32,6 +37,8 @@
             "kicker": "Pillar 03",
             "heading": "Thoughtful sourcing",
             "body": "<p>We source materials responsibly and work with suppliers who prioritize ethical practices. From organic cotton to recycled fibers, every choice is made with care for people and the planet.</p><p>Transparency matters. We believe you deserve to know where your clothing comes from, who made it, and what it's made of.</p>",
+            "image_alt": "Natural textile materials and organic fabrics",
+            "fallback_image": "manifesto-block-3.svg",
             "image_position": "left"
           }
         },
@@ -41,6 +48,30 @@
             "kicker": "Pillar 04",
             "heading": "Building community",
             "body": "<p>Ishmail is more than a brand—it's a community of people who value quality, authenticity, and thoughtful design. We create spaces for connection, conversation, and shared appreciation for craft.</p><p>Our customers aren't just customers. They're collaborators, critics, and champions who help us grow and stay true to our mission.</p>",
+            "image_alt": "Community members gathering at Ishmail event",
+            "fallback_image": "manifesto-block-4.svg",
+            "image_position": "right"
+          }
+        },
+        "block_5": {
+          "type": "story",
+          "settings": {
+            "kicker": "Pillar 05",
+            "heading": "Embracing slow fashion",
+            "body": "<p>We reject the fast-fashion model. Each season brings a considered collection of pieces that work together and stand alone. We design with intention and produce at a measured pace.</p><p>This commitment allows us to maintain quality control, reduce waste, and create garments that deserve a place in your wardrobe for years to come.</p>",
+            "image_alt": "Slow fashion design process",
+            "fallback_image": "manifesto-block-1.svg",
+            "image_position": "left"
+          }
+        },
+        "block_6": {
+          "type": "story",
+          "settings": {
+            "kicker": "Pillar 06",
+            "heading": "Designing for longevity",
+            "body": "<p>Our pieces are designed to transcend trends. We create classic silhouettes with subtle, thoughtful details that reveal themselves over time. Each garment is meant to be worn, loved, and passed down.</p><p>From reinforced seams to timeless cuts, every design decision is made with longevity in mind. This is clothing that ages with grace.</p>",
+            "image_alt": "Timeless clothing design details",
+            "fallback_image": "manifesto-block-2.svg",
             "image_position": "right"
           }
         }
@@ -49,7 +80,9 @@
         "block_1",
         "block_2",
         "block_3",
-        "block_4"
+        "block_4",
+        "block_5",
+        "block_6"
       ]
     }
   },

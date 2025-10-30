@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1000" width="800" height="1000">
+  <rect width="800" height="1000" fill="#f8f8f8"/>
+  <g opacity="0.15" stroke="#000" stroke-width="1.4" fill="none">
+    <path d="M180 220 L620 220 L620 780 L180 780 Z"/>
+    <path d="M230 280 L570 280" stroke-dasharray="0 0 4 8"/>
+    <path d="M230 340 L570 340"/>
+    <path d="M230 400 L570 400"/>
+    <path d="M230 460 L570 460"/>
+    <path d="M230 520 L570 520"/>
+    <path d="M230 580 L570 580"/>
+    <path d="M230 640 L570 640"/>
+    <path d="M230 700 L570 700"/>
+    <line x1="240" y1="320" x2="240" y2="720"/>
+    <line x1="300" y1="320" x2="300" y2="720"/>
+    <line x1="360" y1="320" x2="360" y2="720"/>
+    <line x1="420" y1="320" x2="420" y2="720"/>
+    <line x1="480" y1="320" x2="480" y2="720"/>
+    <line x1="540" y1="320" x2="540" y2="720"/>
+  </g>
+  <text x="400" y="860" font-family="Arial, sans-serif" font-size="14" font-weight="300" fill="#999" text-anchor="middle" letter-spacing="2">WARDROBE STUDY</text>
+</svg>

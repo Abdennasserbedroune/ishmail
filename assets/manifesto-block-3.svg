@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1000" width="800" height="1000">
+  <rect width="800" height="1000" fill="#f6f6f6"/>
+  <g opacity="0.15" fill="none" stroke="#000" stroke-width="1.3">
+    <path d="M150,250 L350,250 L350,450 L150,450 Z"/>
+    <path d="M180,270 L320,270" stroke-linecap="round"/>
+    <path d="M180,290 L320,290" stroke-linecap="round"/>
+    <path d="M180,310 L320,310" stroke-linecap="round"/>
+    <path d="M180,330 L320,330" stroke-linecap="round"/>
+    <path d="M180,350 L320,350" stroke-linecap="round"/>
+    <path d="M180,370 L320,370" stroke-linecap="round"/>
+    <path d="M180,390 L320,390" stroke-linecap="round"/>
+    <path d="M180,410 L320,410" stroke-linecap="round"/>
+    <path d="M180,430 L320,430" stroke-linecap="round"/>
+    <path d="M450,250 L650,250 L650,450 L450,450 Z"/>
+    <g transform="translate(550, 350)">
+      <circle cx="0" cy="0" r="60"/>
+      <path d="M-30,-40 Q-10,-50 10,-40 T30,-40" stroke-linecap="round"/>
+      <path d="M-30,-20 Q-10,-30 10,-20 T30,-20" stroke-linecap="round"/>
+      <path d="M-30,0 Q-10,-10 10,0 T30,0" stroke-linecap="round"/>
+      <path d="M-30,20 Q-10,10 10,20 T30,20" stroke-linecap="round"/>
+      <path d="M-30,40 Q-10,30 10,40 T30,40" stroke-linecap="round"/>
+    </g>
+    <path d="M200,530 L600,530 L600,750 L200,750 Z"/>
+    <line x1="220" y1="560" x2="580" y2="560"/>
+    <line x1="220" y1="600" x2="580" y2="600"/>
+    <line x1="220" y1="640" x2="580" y2="640"/>
+    <line x1="220" y1="680" x2="580" y2="680"/>
+    <line x1="220" y1="720" x2="580" y2="720"/>
+  </g>
+  <text x="400" y="860" font-family="Arial, sans-serif" font-size="14" font-weight="300" fill="#999" text-anchor="middle" letter-spacing="2">TEXTILE DETAILS</text>
+</svg>
