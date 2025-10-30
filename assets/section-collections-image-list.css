@@ -1,0 +1,125 @@
+.collections-image-list {
+  padding: 6rem 0;
+}
+
+.collections-image-list .section-header {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.collections-image-list .section-header__title {
+  font-size: 2rem;
+  font-weight: 300;
+  letter-spacing: -0.02em;
+}
+
+.collections-image-list__grid {
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: 1fr;
+}
+
+.collections-image-list__item {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--border-radius, 0);
+  aspect-ratio: 1 / 1;
+}
+
+.collections-image-list__link,
+.collections-image-list__placeholder {
+  display: block;
+  position: relative;
+  height: 100%;
+}
+
+.collections-image-list__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.collections-image-list__item:hover .collections-image-list__image {
+  transform: scale(1.03);
+}
+
+.collections-image-list__overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 2rem;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
+  color: white;
+}
+
+.collections-image-list__title {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 300;
+  letter-spacing: 0.02em;
+}
+
+.collections-image-list__count {
+  margin: 0.5rem 0 0;
+  font-size: 0.875rem;
+  opacity: 0.9;
+}
+
+.collections-image-list__empty {
+  text-align: center;
+  padding: 3rem 0;
+  color: var(--color-secondary, #666);
+}
+
+.collections-image-list__placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-border, #e0e0e0);
+}
+
+@media screen and (max-width: 749px) {
+  .collections-image-list {
+    padding: 4rem 0;
+  }
+
+  .collections-image-list__grid {
+    gap: 1rem;
+  }
+
+  .collections-image-list__grid--1-col-mobile {
+    grid-template-columns: 1fr;
+  }
+
+  .collections-image-list__grid--2-col-mobile {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .collections-image-list__overlay {
+    padding: 1.5rem;
+  }
+
+  .collections-image-list__title {
+    font-size: 1.25rem;
+  }
+}
+
+@media screen and (min-width: 750px) {
+  .collections-image-list__grid--2-col-desktop {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .collections-image-list__grid--3-col-desktop {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .collections-image-list__grid--4-col-desktop {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .collections-image-list__grid--5-col-desktop {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+  }
+}
