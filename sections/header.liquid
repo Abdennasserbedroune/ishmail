@@ -7,6 +7,8 @@
 
 <link rel="stylesheet" href="{{ 'component-header.css' | asset_url }}" media="print" onload="this.media='all'">
 <noscript>{{ 'component-header.css' | asset_url | stylesheet_tag }}</noscript>
+<link rel="stylesheet" href="{{ 'component-language-switcher.css' | asset_url }}" media="print" onload="this.media='all'">
+<noscript>{{ 'component-language-switcher.css' | asset_url | stylesheet_tag }}</noscript>
 
 <header class="header{% if header_transparent %} header--transparent{% endif %}{% if section.settings.enable_sticky_header %} header--sticky{% endif %}" data-header>
   <div class="header__wrapper page-width">
@@ -55,6 +57,8 @@
       </ul>
 
       <div class="header__icons">
+        {% render 'language-switcher', id: 'HeaderLanguageDesktop', class: 'language-switcher language-switcher--desktop' %}
+
         <a href="{{ routes.search_url }}" class="header__icon" aria-label="{{ 'general.search.search' | t }}">
           {% render 'icon-search' %}
         </a>
@@ -79,6 +83,10 @@
     </div>
     
     <nav class="mobile-menu__nav">
+      <div class="mobile-menu__language">
+        {% render 'language-switcher', id: 'HeaderLanguageMobile', class: 'language-switcher language-switcher--mobile' %}
+      </div>
+
       <ul class="mobile-menu__list" role="list">
         {% for link in section.settings.menu.links %}
           <li class="mobile-menu__item">

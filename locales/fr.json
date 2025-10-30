@@ -1,0 +1,160 @@
+{
+  "general": {
+    "accessibility": {
+      "skip_to_text": "Passer au contenu",
+      "close": "Fermer",
+      "menu": "Menu",
+      "refresh_page": "Le choix d'une sélection entraîne l'actualisation d'une page entière.",
+      "link_messages": {
+        "new_window": "S'ouvre dans une nouvelle fenêtre."
+      }
+    },
+    "meta": {
+      "tags": "Étiqueté \"{{ tags }}\"",
+      "page": "Page {{ page }}",
+      "tagged": "étiqueté {{ tags }}"
+    },
+    "password_page": {
+      "opening_soon": "Ouverture prochaine",
+      "login_form_password_label": "Mot de passe",
+      "login_form_password_placeholder": "Votre mot de passe",
+      "login_form_submit": "Entrer",
+      "admin_link_html": "Êtes-vous le propriétaire de la boutique? <a href=\"/admin\">Connectez-vous ici</a>"
+    },
+    "search": {
+      "search": "Rechercher",
+      "title": "Rechercher",
+      "placeholder": "Rechercher dans notre boutique",
+      "submit": "Rechercher",
+      "results_with_count": "{{ count }} résultat pour \"{{ terms }}\"",
+      "no_results": "Aucun résultat trouvé pour \"{{ terms }}\". Veuillez réessayer avec une autre requête."
+    },
+    "social": {
+      "share": "Partager"
+    },
+    "continue_shopping": "Continuer vos achats",
+    "pagination": {
+      "label": "Pagination",
+      "page": "Page {{ number }}",
+      "next": "Suivant",
+      "previous": "Précédent"
+    },
+    "breadcrumbs": {
+      "home": "Accueil"
+    },
+    "language": {
+      "label": "Langue",
+      "submit": "Mettre à jour la langue"
+    }
+  },
+  "newsletter": {
+    "email_placeholder": "Adresse e-mail",
+    "submit": "S'abonner",
+    "success": "Merci de vous être abonné"
+  },
+  "products": {
+    "product": {
+      "add_to_cart": "Ajouter au panier",
+      "sold_out": "Épuisé",
+      "unavailable": "Indisponible",
+      "on_sale": "Solde",
+      "save": "Économiser",
+      "quantity": {
+        "label": "Quantité",
+        "input_label": "Quantité pour {{ product }}",
+        "increase": "Augmenter la quantité pour {{ product }}",
+        "decrease": "Diminuer la quantité pour {{ product }}"
+      },
+      "price": {
+        "regular_price": "Prix régulier",
+        "sale_price": "Prix soldé"
+      }
+    },
+    "facets": {
+      "clear_all": "Tout effacer",
+      "from": "De",
+      "to": "À"
+    },
+    "sorting": {
+      "title": "Trier par",
+      "featured": "En vedette",
+      "best_selling": "Meilleures ventes",
+      "az": "Alphabétique, de A à Z",
+      "za": "Alphabétique, de Z à A",
+      "price_ascending": "Prix, du plus bas au plus élevé",
+      "price_descending": "Prix, du plus élevé au plus bas",
+      "date_ascending": "Date, du plus ancien au plus récent",
+      "date_descending": "Date, du plus récent au plus ancien"
+    }
+  },
+  "sections": {
+    "header": {
+      "cart": "Panier"
+    },
+    "cart": {
+      "title": "Votre panier",
+      "empty": "Votre panier est actuellement vide.",
+      "update": "Mettre à jour",
+      "checkout": "Commander",
+      "view_cart": "Voir le panier",
+      "subtotal": "Sous-total",
+      "note": "Instructions spéciales pour la commande",
+      "shipping_at_checkout": "Taxes et frais d'expédition calculés lors du paiement",
+      "headings": {
+        "product": "Produit",
+        "price": "Prix",
+        "quantity": "Quantité",
+        "total": "Total"
+      },
+      "remove_title": "Retirer {{ title }}",
+      "cart_error": "Une erreur s'est produite lors de la mise à jour de votre panier. Veuillez réessayer.",
+      "quantity_error": "Vous ne pouvez ajouter que {{ quantity }} de cet article à votre panier.",
+      "notification": {
+        "item_added": "Article ajouté à votre panier"
+      }
+    },
+    "collection": {
+      "empty": "Aucun produit trouvé",
+      "product_count": "{{ count }} produits"
+    },
+    "featured_collection": {
+      "view_all": "Voir tout",
+      "no_collection": "Veuillez sélectionner une collection dans les paramètres du thème"
+    },
+    "collections_image_list": {
+      "product": "produit",
+      "products": "produits",
+      "collection_placeholder": "Collection",
+      "no_collections": "Ajoutez des collections à cette section pour les afficher ici"
+    },
+    "announcement": {
+      "announcement": "Annonce"
+    },
+    "404": {
+      "title": "Page non trouvée",
+      "subtitle": "La page que vous avez demandée n'existe pas.",
+      "link": "Continuer vos achats"
+    }
+  },
+  "blogs": {
+    "article": {
+      "by_author": "par {{ author }}",
+      "read_more": "Lire la suite",
+      "comments": "{{ count }} commentaires",
+      "comment_form_title": "Laissez un commentaire",
+      "name": "Nom",
+      "email": "E-mail",
+      "message": "Message",
+      "post_comment": "Publier le commentaire",
+      "comment_success": "Votre commentaire a été publié avec succès! Merci!"
+    }
+  },
+  "customer": {
+    "account": {
+      "title": "Compte"
+    }
+  },
+  "footer": {
+    "copyright": "Tous droits réservés."
+  }
+}
