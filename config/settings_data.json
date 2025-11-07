@@ -25,6 +25,98 @@
       },
       "header": {
         "type": "header",
+        "blocks": {
+          "menu-item-0": {
+            "type": "menu_item",
+            "settings": {
+              "label": "MANTEAU & VESTES",
+              "link": "/collections/manteaux-vestes"
+            }
+          },
+          "menu-item-1": {
+            "type": "menu_item",
+            "settings": {
+              "label": "CHEMISES & TOPS",
+              "link": "/collections/chemises-tops"
+            }
+          },
+          "menu-item-2": {
+            "type": "menu_item",
+            "settings": {
+              "label": "TEE+SHIRTS",
+              "link": "/collections/tee-shirts"
+            }
+          },
+          "menu-item-3": {
+            "type": "menu_item",
+            "settings": {
+              "label": "SWEATSHIRTS & HOODIE",
+              "link": "/collections/sweatshirts-hoodies"
+            }
+          },
+          "menu-item-4": {
+            "type": "menu_item",
+            "settings": {
+              "label": "ROBES & TUNIQUES",
+              "link": "/collections/robes-tuniques"
+            }
+          },
+          "menu-item-5": {
+            "type": "menu_item",
+            "settings": {
+              "label": "PANTALONS",
+              "link": "/collections/pantalons"
+            }
+          },
+          "menu-item-6": {
+            "type": "menu_item",
+            "settings": {
+              "label": "SHORT & JUPES",
+              "link": "/collections/shorts-jupes"
+            }
+          },
+          "menu-item-7": {
+            "type": "menu_item",
+            "settings": {
+              "label": "MAILLE",
+              "link": "/collections/maille"
+            }
+          },
+          "menu-item-8": {
+            "type": "menu_item",
+            "settings": {
+              "label": "DENIM",
+              "link": "/collections/denim"
+            }
+          },
+          "menu-item-9": {
+            "type": "menu_item",
+            "settings": {
+              "label": "ACCESSOIRES",
+              "link": "/collections/accessoires"
+            }
+          },
+          "menu-item-10": {
+            "type": "menu_item",
+            "settings": {
+              "label": "COLLABORATIONS",
+              "link": "/collections/collaborations"
+            }
+          }
+        },
+        "block_order": [
+          "menu-item-0",
+          "menu-item-1",
+          "menu-item-2",
+          "menu-item-3",
+          "menu-item-4",
+          "menu-item-5",
+          "menu-item-6",
+          "menu-item-7",
+          "menu-item-8",
+          "menu-item-9",
+          "menu-item-10"
+        ],
         "settings": {
           "enable_sticky_header": true,
           "enable_transparent_header": false
