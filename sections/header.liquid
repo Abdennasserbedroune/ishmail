@@ -3,6 +3,7 @@
   if template.name == 'index' and section.settings.enable_transparent_header
     assign header_transparent = true
   endif
+  assign has_custom_menu_blocks = section.blocks.size > 0
 %}
 
 <link rel="stylesheet" href="{{ 'component-header.css' | asset_url }}" media="print" onload="this.media='all'">
@@ -39,24 +40,35 @@
       </div>
 
       <ul class="header__menu-list" role="list">
-        {% for link in section.settings.menu.links %}
-          <li class="header__menu-item{% if link.links != blank %} header__menu-item--has-dropdown{% endif %}">
-            <a href="{{ link.url }}" class="header__menu-link" {% if link.current %} aria-current="page"{% endif %}>
-              {{ link.title | escape }}
-            </a>
-            {% if link.links != blank %}
-              <ul class="header__submenu" role="list">
-                {% for child_link in link.links %}
-                  <li class="header__submenu-item">
-                    <a href="{{ child_link.url }}" class="header__submenu-link" {% if child_link.current %} aria-current="page"{% endif %}>
-                      {{ child_link.title | escape }}
-                    </a>
-                  </li>
-                {% endfor %}
-              </ul>
-            {% endif %}
-          </li>
-        {% endfor %}
+        {% if has_custom_menu_blocks %}
+          {% for block in section.blocks %}
+            {% assign block_link = block.settings.link | default: '#' %}
+            <li class="header__menu-item" {{ block.shopify_attributes }}>
+              <a href="{{ block_link }}" class="header__menu-link">
+                {{ block.settings.label | default: 'Menu item' | escape }}
+              </a>
+            </li>
+          {% endfor %}
+        {% else %}
+          {% for link in section.settings.menu.links %}
+            <li class="header__menu-item{% if link.links != blank %} header__menu-item--has-dropdown{% endif %}">
+              <a href="{{ link.url }}" class="header__menu-link" {% if link.current %} aria-current="page"{% endif %}>
+                {{ link.title | escape }}
+              </a>
+              {% if link.links != blank %}
+                <ul class="header__submenu" role="list">
+                  {% for child_link in link.links %}
+                    <li class="header__submenu-item">
+                      <a href="{{ child_link.url }}" class="header__submenu-link" {% if child_link.current %} aria-current="page"{% endif %}>
+                        {{ child_link.title | escape }}
+                      </a>
+                    </li>
+                  {% endfor %}
+                </ul>
+              {% endif %}
+            </li>
+          {% endfor %}
+        {% endif %}
       </ul>
 
       <div class="header__icons">
@@ -93,27 +105,38 @@
       </div>
 
       <ul class="mobile-menu__list" role="list">
-        {% for link in section.settings.menu.links %}
-          <li class="mobile-menu__item">
-            <a href="{{ link.url }}" class="mobile-menu__link" {% if link.current %} aria-current="page"{% endif %}>
-              {{ link.title | escape }}
-            </a>
-            {% if link.links != blank %}
-              <button type="button" class="mobile-menu__expand" aria-expanded="false">
-                {% render 'icon-chevron' %}
-              </button>
-              <ul class="mobile-menu__submenu" role="list">
-                {% for child_link in link.links %}
-                  <li class="mobile-menu__submenu-item">
-                    <a href="{{ child_link.url }}" class="mobile-menu__submenu-link">
-                      {{ child_link.title | escape }}
-                    </a>
-                  </li>
-                {% endfor %}
-              </ul>
-            {% endif %}
-          </li>
-        {% endfor %}
+        {% if has_custom_menu_blocks %}
+          {% for block in section.blocks %}
+            {% assign block_link = block.settings.link | default: '#' %}
+            <li class="mobile-menu__item">
+              <a href="{{ block_link }}" class="mobile-menu__link">
+                {{ block.settings.label | default: 'Menu item' | escape }}
+              </a>
+            </li>
+          {% endfor %}
+        {% else %}
+          {% for link in section.settings.menu.links %}
+            <li class="mobile-menu__item">
+              <a href="{{ link.url }}" class="mobile-menu__link" {% if link.current %} aria-current="page"{% endif %}>
+                {{ link.title | escape }}
+              </a>
+              {% if link.links != blank %}
+                <button type="button" class="mobile-menu__expand" aria-expanded="false">
+                  {% render 'icon-chevron' %}
+                </button>
+                <ul class="mobile-menu__submenu" role="list">
+                  {% for child_link in link.links %}
+                    <li class="mobile-menu__submenu-item">
+                      <a href="{{ child_link.url }}" class="mobile-menu__submenu-link">
+                        {{ child_link.title | escape }}
+                      </a>
+                    </li>
+                  {% endfor %}
+                </ul>
+              {% endif %}
+            </li>
+          {% endfor %}
+        {% endif %}
       </ul>
     </nav>
   </div>
@@ -149,6 +172,25 @@
       "default": false,
       "label": "Enable transparent header on homepage"
     }
-  ]
+  ],
+  "blocks": [
+    {
+      "type": "menu_item",
+      "name": "Menu item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Label"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 12
 }
 {% endschema %}
